@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Weather from "./components/weather/Weather";
-import Forecast from "./components/forecast/Forecast";
+import Weather from "../components/weather/Weather";
+import Forecast from "../components/forecast/Forecast";
 import {
   getWeatherData,
   getLocalWeather,
   getForecastData,
-} from "./api/hello/route";
-import useGeolocation from "../app/getGeoHook";
+} from "./api/fetches/route";
+import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
 
 const Home = () => {
@@ -16,8 +16,16 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [forecastWeatherData, setForecastWeatherData] = useState(null);
   const location = useGeolocation();
-  const lat = localStorage.getItem("lat");
-  const lng = localStorage.getItem("lng");
+
+  let lat;
+  let lng;
+  if (typeof window !== "undefined") {
+    lat = localStorage.getItem("lat");
+    lng = localStorage.getItem("lng");
+  }
+
+  console.log(weatherData);
+  console.log(lat);
 
   const handleSearch = async () => {
     try {
@@ -41,7 +49,7 @@ const Home = () => {
     if (lat && lng) {
       getInitData();
     }
-  }, []);
+  }, [lng, lat]);
 
   return (
     <div className={style.main}>
@@ -59,7 +67,7 @@ const Home = () => {
           ? JSON.stringify(location)
           : "Location data not available yet."}
       </div>
-      {/* <Forecast forecastWeatherData={forecastWeatherData} /> */}
+      <Forecast forecastWeatherData={forecastWeatherData} />
     </div>
   );
 };

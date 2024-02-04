@@ -9,11 +9,21 @@ import rain from "../img/10d@2x.png";
 import thunderstorm from "../img/11d@2x.png";
 import snow from "../img/13d@2x.png";
 import mist from "../img/50d@2x.png";
+import clearSky2 from "../img/01n@2x.png";
+import fewClouds2 from "../img/02n@2x.png";
+import scatteredClouds2 from "../img/03n@2x.png";
+import brokenClouds2 from "../img/04n@2x.png";
+import showerRain2 from "../img/09n@2x.png";
+import rain2 from "../img/10n@2x.png";
+import thunderstorm2 from "../img/11n@2x.png";
+import snow2 from "../img/13n@2x.png";
+import mist2 from "../img/50n@2x.png";
 
 const Weather = ({ weatherData }) => {
   // Spracovanie údajov o počasí a ich zobrazenie
   const temp = Math.round(weatherData.main.temp);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
+  const icon = weatherData.weather[0].icon;
 
   const getWeatherIcon = (iconCode) => {
     switch (iconCode) {
@@ -35,8 +45,26 @@ const Weather = ({ weatherData }) => {
         return snow;
       case "50d":
         return mist;
+      case "01n":
+        return clearSky2;
+      case "02n":
+        return fewClouds2;
+      case "03n":
+        return scatteredClouds2;
+      case "04n":
+        return brokenClouds2;
+      case "09n":
+        return showerRain2;
+      case "10n":
+        return rain2;
+      case "11n":
+        return thunderstorm2;
+      case "13n":
+        return snow2;
+      case "50n":
+        return mist2;
       default:
-        return null;
+        return clearSky;
     }
   };
 
@@ -49,8 +77,9 @@ const Weather = ({ weatherData }) => {
         <p>Vlhkosť: {weatherData.main.humidity}%</p>
         <p>Vietor: {wind} km/hod</p>
         <p className="icon">
+          {icon}
           <Image
-            src={getWeatherIcon(weatherData.weather[0].icon)}
+            src={getWeatherIcon(icon)}
             alt="Weather Icon"
             width={150}
             height={150}

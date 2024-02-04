@@ -10,7 +10,6 @@ const useGeolocation = () => {
     const onSuccess = (location) => {
       const { latitude, longitude } = location.coords;
 
-      // Uloženie hodnôt do lokálneho úložiska
       localStorage.setItem("lat", latitude);
       localStorage.setItem("lng", longitude);
 
