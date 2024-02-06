@@ -2,7 +2,7 @@ import React from "react";
 
 const Forecast = ({ forecastWeatherData }) => {
   // const temp = Math.round(forecastWeatherData.list[0].main.temp);
-  // console.log(forecastWeatherData)
+  console.log(forecastWeatherData)
 
   return (
     <div className="">

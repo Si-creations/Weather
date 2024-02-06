@@ -12,20 +12,21 @@ import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
 
 const Home = () => {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState(null);
+  const [initCity, setInitCity] = useState<string>("");
   const [forecastWeatherData, setForecastWeatherData] = useState(null);
   const location = useGeolocation();
 
-  let lat;
-  let lng;
+  let lat: string | null ="";
+  let lng: string | null ="";
   if (typeof window !== "undefined") {
     lat = localStorage.getItem("lat");
     lng = localStorage.getItem("lng");
   }
 
-  console.log(weatherData);
-  console.log(lat);
+
+
 
   const handleSearch = async () => {
     try {
@@ -45,11 +46,30 @@ const Home = () => {
     } catch (error) {}
   };
 
+  const getInitForecast = async () => {
+    try {
+      const forecastData = await getForecastData(initCity);
+      setForecastWeatherData(forecastData);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     if (lat && lng) {
       getInitData();
     }
   }, [lng, lat]);
+
+  useEffect(() => {
+    if (weatherData && weatherData.name) {
+      setInitCity(weatherData.name); 
+    }
+  }, [weatherData]);
+
+  useEffect(() => {
+    if (initCity) {
+      getInitForecast();
+    }
+  }, [initCity]);
 
   return (
     <div className={style.main}>

@@ -18,14 +18,14 @@ import rain2 from "../img/10n@2x.png";
 import thunderstorm2 from "../img/11n@2x.png";
 import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
+import { weatherDataType } from "@/types/weatherDataType";
 
-const Weather = ({ weatherData }) => {
-  // Spracovanie údajov o počasí a ich zobrazenie
+const Weather = ({ weatherData }: weatherDataType) => {
   const temp = Math.round(weatherData.main.temp);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
 
-  const getWeatherIcon = (iconCode) => {
+  const getWeatherIcon = (iconCode: string) => {
     switch (iconCode) {
       case "01d":
         return clearSky;
@@ -77,12 +77,12 @@ const Weather = ({ weatherData }) => {
         <p>Vlhkosť: {weatherData.main.humidity}%</p>
         <p>Vietor: {wind} km/hod</p>
         <p className="icon">
-          {icon}
           <Image
             src={getWeatherIcon(icon)}
             alt="Weather Icon"
             width={150}
             height={150}
+            priority={true}
           />
         </p>
       </div>
