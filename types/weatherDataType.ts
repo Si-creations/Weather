@@ -1,20 +1,20 @@
-export type weatherDataType = {
-  weatherData: {
-    name: string;
-    main: {
-      temp: number;
-      
-      humidity: number;
-    };
-    wind: {
-      speed: number
-    }
-    weather: [weatherType]
+export type WeatherDataType = {
+  name: string;
+  main: {
+    temp: number;
+    humidity: number;
   };
+  wind: {
+    speed: number;
+  };
+  weather: [WeatherType];
 };
 
-export type weatherType = {
-    icon: string;
-    description: string;
-}
+export type WeatherType = {
+  icon: string;
+  description: string;
+};
 
+export type weatherData = {
+  weatherData: WeatherDataType;
+};

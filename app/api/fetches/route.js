@@ -21,8 +21,8 @@ export const getLocalWeather = async (lat, lng) => {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${APIkey}&units=metric&lang=sk`
     );
-    console.log(response.data);
-    return response.data;
+    // console.log(response.data);
+    return response.data; 
   } catch (error) {
     console.error("Chyba pri získavaní údajov o počasí(location)", error);
     throw error;
@@ -30,8 +30,8 @@ export const getLocalWeather = async (lat, lng) => {
 };
 
 export const getForecastData = async (city) => {
-  console.log(APIkey);
-  console.log(city);
+  // console.log(APIkey);
+  // console.log(city);
   try {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=5&appid=${APIkey}&units=metric&lang=sk`

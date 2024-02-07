@@ -18,12 +18,14 @@ import rain2 from "../img/10n@2x.png";
 import thunderstorm2 from "../img/11n@2x.png";
 import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
-import { weatherDataType } from "@/types/weatherDataType";
+import { weatherData } from "@/types/weatherDataType";
 
-const Weather = ({ weatherData }: weatherDataType) => {
+const Weather = ({ weatherData }: weatherData) => {
   const temp = Math.round(weatherData.main.temp);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
+
+  console.log(weatherData);
 
   const getWeatherIcon = (iconCode: string) => {
     switch (iconCode) {

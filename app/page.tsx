@@ -10,23 +10,21 @@ import {
 } from "./api/fetches/route";
 import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
+import { WeatherDataType } from "@/types/weatherDataType";
 
 const Home = () => {
   const [city, setCity] = useState<string>("");
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState<WeatherDataType | null>(null);
   const [initCity, setInitCity] = useState<string>("");
   const [forecastWeatherData, setForecastWeatherData] = useState(null);
   const location = useGeolocation();
 
-  let lat: string | null ="";
-  let lng: string | null ="";
+  let lat: string | null = "";
+  let lng: string | null = "";
   if (typeof window !== "undefined") {
     lat = localStorage.getItem("lat");
     lng = localStorage.getItem("lng");
   }
-
-
-
 
   const handleSearch = async () => {
     try {
@@ -61,7 +59,7 @@ const Home = () => {
 
   useEffect(() => {
     if (weatherData && weatherData.name) {
-      setInitCity(weatherData.name); 
+      setInitCity(weatherData.name);
     }
   }, [weatherData]);
 
@@ -70,6 +68,8 @@ const Home = () => {
       getInitForecast();
     }
   }, [initCity]);
+
+  console.log(weatherData);
 
   return (
     <div className={style.main}>
