@@ -15,6 +15,6 @@ export type WeatherType = {
   description: string;
 };
 
-export type weatherData = {
+export type weatherDataPropsType = {
   weatherData: WeatherDataType;
 };

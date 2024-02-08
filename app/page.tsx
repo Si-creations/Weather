@@ -69,7 +69,6 @@ const Home = () => {
     }
   }, [initCity]);
 
-  console.log(weatherData);
 
   return (
     <div className={style.main}>

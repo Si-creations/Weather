@@ -34,7 +34,7 @@ export const getForecastData = async (city) => {
   // console.log(city);
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=5&appid=${APIkey}&units=metric&lang=sk`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=9&appid=${APIkey}&units=metric&lang=sk`
     );
     // console.log(response.data);
     return response.data;
