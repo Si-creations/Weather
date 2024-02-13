@@ -22,14 +22,14 @@ export const getLocalWeather = async (lat, lng) => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${APIkey}&units=metric&lang=sk`
     );
     // console.log(response.data);
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("Chyba pri získavaní údajov o počasí(location)", error);
     throw error;
   }
 };
 
-export const getForecastData = async (city) => {
+export const getHourlyForecastData = async (city) => {
   // console.log(APIkey);
   // console.log(city);
   try {
@@ -39,7 +39,26 @@ export const getForecastData = async (city) => {
     // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error("Chyba pri získavaní údajov o počasí (5)", error);
+    console.error("Chyba pri získavaní údajov o počasí (hourly)", error);
     throw error;
   }
 };
+
+
+
+export const getDaylyForecastData = async (city) => {
+  // console.log(city);
+  // console.log(APIkey);
+  try {
+    const response = await axios.get(
+      `http://api.weatherapi.com/v1/forecast.json?key=a877d10081cf45c7b71122440241302&q=${city}&aqi=no&days=3&lang=sk`
+    );
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Chyba pri získavaní údajov o počasí (daily)", error);
+    throw error;
+  }
+};
+
+

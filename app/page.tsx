@@ -2,21 +2,26 @@
 
 import React, { useState, useEffect } from "react";
 import Weather from "../components/weather/Weather";
-import Forecast from "../components/forecast/Forecast";
+import HourlyForecast from "../components/hourlyForecast/hourlyForecast";
+import DaylyForecast from "../components/daylyForecast/dailyForecast"
 import {
   getWeatherData,
   getLocalWeather,
-  getForecastData,
+  getHourlyForecastData,
+  getDaylyForecastData,
 } from "./api/fetches/route";
 import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
 import { WeatherDataType } from "@/types/weatherDataType";
+import daylyForecast from "../components/daylyForecast/dailyForecast";
 
 const Home = () => {
   const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<WeatherDataType | null>(null);
   const [initCity, setInitCity] = useState<string>("");
-  const [forecastWeatherData, setForecastWeatherData] = useState(null);
+  const [hourlyForecastWeatherData, setHourlyForecastWeatherData] =
+    useState(null);
+  const [daylyForecastData, setDaylyForecastData] = useState(null);
   const location = useGeolocation();
 
   let lat: string | null = "";
@@ -32,8 +37,8 @@ const Home = () => {
       setWeatherData(data);
     } catch (error) {}
     try {
-      const forecastData = await getForecastData(city);
-      setForecastWeatherData(forecastData);
+      const hourlyForecastData = await getHourlyForecastData(city);
+      setHourlyForecastWeatherData(hourlyForecastData);
     } catch (error) {}
   };
 
@@ -46,8 +51,12 @@ const Home = () => {
 
   const getInitForecast = async () => {
     try {
-      const forecastData = await getForecastData(initCity);
-      setForecastWeatherData(forecastData);
+      const hourlyForecastData = await getHourlyForecastData(initCity);
+      setHourlyForecastWeatherData(hourlyForecastData);
+    } catch (error) {}
+    try {
+      const daylyForecastData = await getDaylyForecastData(initCity);
+      setDaylyForecastData(daylyForecastData);
     } catch (error) {}
   };
 
@@ -69,7 +78,6 @@ const Home = () => {
     }
   }, [initCity]);
 
-
   return (
     <div className={style.main}>
       <input
@@ -86,7 +94,8 @@ const Home = () => {
           ? JSON.stringify(location)
           : "Location data not available yet."}
       </div>
-      <Forecast forecastWeatherData={forecastWeatherData} />
+      <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
+      <HourlyForecast hourlyForecastWeatherData={hourlyForecastWeatherData} />
     </div>
   );
 };
