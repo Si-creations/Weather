@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Weather from "../components/weather/Weather";
-import HourlyForecast from "../components/hourlyForecast/hourlyForecast";
-import DaylyForecast from "../components/daylyForecast/dailyForecast"
+import HourlyForecast from "../components/hourlyForecast/HourlyForecast";
+import DaylyForecast from "../components/daylyForecast/DailyForecast";
 import {
   getWeatherData,
   getLocalWeather,
@@ -13,7 +13,6 @@ import {
 import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
 import { WeatherDataType } from "@/types/weatherDataType";
-import daylyForecast from "../components/daylyForecast/dailyForecast";
 
 const Home = () => {
   const [city, setCity] = useState<string>("");
@@ -80,13 +79,15 @@ const Home = () => {
 
   return (
     <div className={style.main}>
-      <input
-        type="text"
-        placeholder="Zadajte mesto"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button onClick={handleSearch}>Hľadať</button>
+      <div className="bg-amber-300 p-2 flex justify-between gap-2 rounded-md">
+        <input
+          type="text"
+          placeholder="Zadajte mesto"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <button  onClick={handleSearch}>Hľadať</button>
+      </div>
 
       {weatherData && <Weather weatherData={weatherData} />}
       <div>
@@ -94,8 +95,8 @@ const Home = () => {
           ? JSON.stringify(location)
           : "Location data not available yet."}
       </div>
-      <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
       <HourlyForecast hourlyForecastWeatherData={hourlyForecastWeatherData} />
+      <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
     </div>
   );
 };
