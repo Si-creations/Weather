@@ -18,7 +18,7 @@ const DaylyForecast = ({ daylyForecastWeatherData }) => {
       <button onClick={handleToggle}>Predpoved na 5 dni tu</button>
       <motion.div
       className={style.main}
-        initial={{ opacity: 1, x: '100vw' }}
+        initial={{ opacity: 0, x: '100vw' }}
         animate={{ opacity: 1, x: isOpen ? 0 : "100vw" }}
         transition={{ duration: 0.5 }}
         style={{

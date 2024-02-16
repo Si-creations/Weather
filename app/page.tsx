@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Weather from "../components/weather/Weather";
 import HourlyForecast from "../components/hourlyForecast/HourlyForecast";
-import DaylyForecast from "../components/daylyForecast/DailyForecast";
+
 import {
   getWeatherData,
   getLocalWeather,
@@ -101,14 +101,19 @@ const Home = () => {
         />
       </div>
 
-      {weatherData && <Weather weatherData={weatherData} />}
+      {weatherData && (
+        <Weather
+          weatherData={weatherData}
+          daylyForecastWeatherData={daylyForecastData}
+        />
+      )}
       {/* <div>
         {location.loaded
           ? JSON.stringify(location)
           : "Location data not available yet."}
       </div> */}
       <HourlyForecast hourlyForecastWeatherData={hourlyForecastWeatherData} />
-      <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
+   
     </div>
   );
 };

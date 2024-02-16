@@ -20,8 +20,12 @@ import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
 import { weatherDataPropsType } from "@/types/weatherDataType";
 import style from "./weather.module.scss";
+import DaylyForecast from "../daylyForecast/dailyForecast";
 
-const Weather = ({ weatherData }: weatherDataPropsType) => {
+const Weather = ({
+  weatherData,
+  daylyForecastWeatherData,
+}: weatherDataPropsType) => {
   const temp = Math.round(weatherData.main.temp);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
@@ -87,6 +91,7 @@ const Weather = ({ weatherData }: weatherDataPropsType) => {
         <p>Vlhkosť: {weatherData.main.humidity}%</p>
         <p>Vietor: {wind} km/hod</p>
       </div>
+      <DaylyForecast daylyForecastWeatherData={daylyForecastWeatherData} />
     </div>
   );
 };
