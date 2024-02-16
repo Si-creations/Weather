@@ -19,7 +19,7 @@ import thunderstorm2 from "../img/11n@2x.png";
 import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
 import { weatherDataPropsType } from "@/types/weatherDataType";
-import  style  from "./weather.module.scss";
+import style from "./weather.module.scss";
 
 const Weather = ({ weatherData }: weatherDataPropsType) => {
   const temp = Math.round(weatherData.main.temp);
@@ -71,13 +71,9 @@ const Weather = ({ weatherData }: weatherDataPropsType) => {
 
   return (
     <div className={style.main}>
-      <h2>{weatherData.name}</h2>
       <div>
-        <p>Teplota: {temp}°C</p>
-        <p>Popis: {weatherData.weather[0].description}</p>
-        <p>Vlhkosť: {weatherData.main.humidity}%</p>
-        <p>Vietor: {wind} km/hod</p>
-        <p className="icon">
+        <h2>{weatherData.name}</h2>
+        <p className="icon inline-block">
           <Image
             src={getWeatherIcon(icon)}
             alt="Weather Icon"
@@ -86,6 +82,10 @@ const Weather = ({ weatherData }: weatherDataPropsType) => {
             priority={true}
           />
         </p>
+        <p>{temp}°C</p>
+        <p>{weatherData.weather[0].description}</p>
+        <p>Vlhkosť: {weatherData.main.humidity}%</p>
+        <p>Vietor: {wind} km/hod</p>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const hourlyForecast = ({ hourlyForecastWeatherData }) => {
       {hourlyForecastWeatherData &&
         hourlyForecastWeatherData.list.map((item, index) => (
           <div className="hourly-card flex flex-col items-center" key={index}>
-            <div className="bg-red-200 my-4">
+            <div className="my-4">
               <p>
                 {index === 0 ? "teraz" : item.dt_txt.split(" ")[1].slice(0, 5)}
               </p>{" "}

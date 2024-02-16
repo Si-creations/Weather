@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import style from "./dailyForecast.module.scss"
 
 const DaylyForecast = ({ daylyForecastWeatherData }) => {
   console.log(daylyForecastWeatherData);
@@ -13,10 +14,10 @@ const DaylyForecast = ({ daylyForecastWeatherData }) => {
   };
 
   return (
-    <div>
+    <div >
       <button onClick={handleToggle}>Predpoved na 5 dni tu</button>
       <motion.div
-        className="window overflow-x-hidden"
+      className={style.main}
         initial={{ opacity: 1, x: '100vw' }}
         animate={{ opacity: 1, x: isOpen ? 0 : "100vw" }}
         transition={{ duration: 0.5 }}
@@ -26,7 +27,6 @@ const DaylyForecast = ({ daylyForecastWeatherData }) => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "white",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

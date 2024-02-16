@@ -13,6 +13,7 @@ import {
 import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
 import { WeatherDataType } from "@/types/weatherDataType";
+import { FaSearchLocation } from "react-icons/fa";
 
 const Home = () => {
   const [city, setCity] = useState<string>("");
@@ -39,6 +40,13 @@ const Home = () => {
       const hourlyForecastData = await getHourlyForecastData(city);
       setHourlyForecastWeatherData(hourlyForecastData);
     } catch (error) {}
+  };
+
+  const handleKeyDown = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      // Spustenie funkcie pri stlačení klávesy Enter
+      handleSearch();
+    }
   };
 
   const getInitData = async () => {
@@ -79,22 +87,26 @@ const Home = () => {
 
   return (
     <div className={style.main}>
-      <div className="bg-amber-300 p-2 flex justify-between gap-2 rounded-md">
+      <div className={style.searchBox}>
+        <button className={style.btnSearch} onClick={handleSearch}>
+          <FaSearchLocation className="fas fa-search inline" />
+        </button>
         <input
+          className={style.inputSearch}
           type="text"
           placeholder="Zadajte mesto"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
-        <button  onClick={handleSearch}>Hľadať</button>
       </div>
 
       {weatherData && <Weather weatherData={weatherData} />}
-      <div>
+      {/* <div>
         {location.loaded
           ? JSON.stringify(location)
           : "Location data not available yet."}
-      </div>
+      </div> */}
       <HourlyForecast hourlyForecastWeatherData={hourlyForecastWeatherData} />
       <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
     </div>
