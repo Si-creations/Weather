@@ -1,3 +1,5 @@
+import { DaylyForecastWeatherDataType } from "./daylyDataType";
+
 export type WeatherDataType = {
   name: string;
   main: {
@@ -15,6 +17,11 @@ export type WeatherType = {
   description: string;
 };
 
-export type weatherDataPropsType = {
+export type WeatherDataPropsType = {
   weatherData: WeatherDataType;
+  daylyForecastWeatherData: DaylyForecastWeatherDataType
+};
+
+export type DaylyForecastDataPropsType = {
+  daylyForecastWeatherData: DaylyForecastWeatherDataType;
 };

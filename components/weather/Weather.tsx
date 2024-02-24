@@ -18,14 +18,14 @@ import rain2 from "../img/10n@2x.png";
 import thunderstorm2 from "../img/11n@2x.png";
 import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
-import { weatherDataPropsType } from "@/types/weatherDataType";
+import { WeatherDataPropsType } from "@/types/weatherDataType";
 import style from "./weather.module.scss";
 import DaylyForecast from "../daylyForecast/dailyForecast";
 
 const Weather = ({
   weatherData,
   daylyForecastWeatherData,
-}: weatherDataPropsType) => {
+}: WeatherDataPropsType) => {
   const temp = Math.round(weatherData.main.temp);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
