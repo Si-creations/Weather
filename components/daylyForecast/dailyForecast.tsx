@@ -3,11 +3,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import style from "./dailyForecast.module.scss"
+import { DaylyForecastDataPropsType } from "@/types/weatherDataType";
+import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
 
-const DaylyForecast = ({ daylyForecastWeatherData }) => {
-  console.log(daylyForecastWeatherData);
+const DaylyForecast = ({ daylyForecastWeatherData }: DaylyForecastDataPropsType ) => {
+  // console.log(daylyForecastWeatherData);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -18,7 +20,7 @@ const DaylyForecast = ({ daylyForecastWeatherData }) => {
       <button onClick={handleToggle}>Predpoved na 5 dni tu</button>
       <motion.div
       className={style.main}
-        initial={{ opacity: 1, x: '100vw' }}
+        initial={{ opacity: 0, x: '100vw' }}
         animate={{ opacity: 1, x: isOpen ? 0 : "100vw" }}
         transition={{ duration: 0.5 }}
         style={{
@@ -34,7 +36,7 @@ const DaylyForecast = ({ daylyForecastWeatherData }) => {
       >
         <p>Denna predpoved:</p>
         {daylyForecastWeatherData &&
-          daylyForecastWeatherData.forecast.forecastday.map((item, index) => (
+          daylyForecastWeatherData.forecast.forecastday.map((item: DaylyForecastWeatherDataType, index: number) => (
             <div key={index}>
               <p>
                 {Math.round(item.day.maxtemp_c)} /{" "}

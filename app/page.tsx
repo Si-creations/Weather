@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Weather from "../components/weather/Weather";
-import HourlyForecast from "../components/hourlyForecast/HourlyForecast";
-import DaylyForecast from "../components/daylyForecast/DailyForecast";
+import HourlyForecast from "../components/hourlyForecast/hourlyForecast";
+
 import {
   getWeatherData,
   getLocalWeather,
@@ -13,6 +13,8 @@ import {
 import useGeolocation from "./useGeoHook";
 import style from "./page.module.scss";
 import { WeatherDataType } from "@/types/weatherDataType";
+import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
+import { HourlyForecastWeatherDataType } from "@/types/hourlyDataTypes";
 import { FaSearchLocation } from "react-icons/fa";
 
 const Home = () => {
@@ -20,8 +22,9 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState<WeatherDataType | null>(null);
   const [initCity, setInitCity] = useState<string>("");
   const [hourlyForecastWeatherData, setHourlyForecastWeatherData] =
-    useState(null);
-  const [daylyForecastData, setDaylyForecastData] = useState(null);
+    useState<HourlyForecastWeatherDataType | null>(null);
+  const [daylyForecastData, setDaylyForecastData] =
+    useState<DaylyForecastWeatherDataType | null>(null);
   const location = useGeolocation();
 
   let lat: string | null = "";
@@ -101,14 +104,24 @@ const Home = () => {
         />
       </div>
 
-      {weatherData && <Weather weatherData={weatherData} />}
+      {weatherData && (
+        <Weather
+          weatherData={weatherData}
+          daylyForecastWeatherData={
+            daylyForecastData as DaylyForecastWeatherDataType
+          }
+        />
+      )}
       {/* <div>
         {location.loaded
           ? JSON.stringify(location)
           : "Location data not available yet."}
       </div> */}
-      <HourlyForecast hourlyForecastWeatherData={hourlyForecastWeatherData} />
-      <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
+      <HourlyForecast
+        hourlyForecastWeatherData={
+          hourlyForecastWeatherData as HourlyForecastWeatherDataType
+        }
+      />
     </div>
   );
 };
