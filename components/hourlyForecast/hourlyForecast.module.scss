@@ -1,0 +1,25 @@
+.hourlyCard {
+  max-height: 120px;
+  max-width: 500px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  margin: 0 auto;
+}
+
+.hourlyCard ::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+.parameters {
+  user-select: none;
+  min-width: 100px;
+  height: 110px;
+  line-height: 10px;
+  text-align: center;
+  margin-right: 2px;
+}
+
+

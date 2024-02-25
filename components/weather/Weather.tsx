@@ -27,8 +27,23 @@ const Weather = ({
   daylyForecastWeatherData,
 }: WeatherDataPropsType) => {
   const temp = Math.round(weatherData.main.temp);
+  const feelsLikeTemp = Math.round(weatherData.main.feels_like);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
+
+  const formatTime = (UTC) => {
+    const utcValue = new Date(UTC * 1000);
+    const formatedUtc = utcValue.toLocaleString().split(" ");
+    const selectTime = formatedUtc[formatedUtc.length - 1]
+      .split(":")
+      .slice(0, 2)
+      .join(":");
+
+    return selectTime;
+  };
+
+  const sunrise = formatTime(weatherData.sys.sunrise);
+  const sunset = formatTime(weatherData.sys.sunset)
 
   const getWeatherIcon = (iconCode: string) => {
     switch (iconCode) {
@@ -87,9 +102,13 @@ const Weather = ({
           />
         </p>
         <p>{temp}°C</p>
+        <p>Pocitovo: {feelsLikeTemp}°C</p>
         <p>{weatherData.weather[0].description}</p>
         <p>Vlhkosť: {weatherData.main.humidity}%</p>
         <p>Vietor: {wind} km/hod</p>
+        <p>Vychod slnka: {sunrise}</p>
+        <p>Zapad slnka: {sunset}</p>
+        <p>Tlak: {weatherData.main.pressure}mBar</p>
       </div>
       <DaylyForecast daylyForecastWeatherData={daylyForecastWeatherData} />
     </div>
