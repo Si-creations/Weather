@@ -1,3 +1,9 @@
-.main{
-    text-align: center;
+.main {
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    min-height: 100vh;
+  }
 }
