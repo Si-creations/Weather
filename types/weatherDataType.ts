@@ -5,9 +5,15 @@ export type WeatherDataType = {
   main: {
     temp: number;
     humidity: number;
+    pressure: number;
+    feels_like: number;
   };
   wind: {
     speed: number;
+  };
+  sys: {
+    sunrise: number;
+    sunset: number;
   };
   weather: [WeatherType];
 };
@@ -19,7 +25,6 @@ export type WeatherType = {
 
 export type WeatherDataPropsType = {
   weatherData: WeatherDataType;
-  daylyForecastWeatherData: DaylyForecastWeatherDataType
 };
 
 export type DaylyForecastDataPropsType = {

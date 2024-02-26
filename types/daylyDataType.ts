@@ -9,6 +9,8 @@ export type DaylyForecastWeatherDataType = {
     mintemp_c: number;
     condition: {
       text: string;
+      icon: string;
     };
   };
+  date: string;
 };

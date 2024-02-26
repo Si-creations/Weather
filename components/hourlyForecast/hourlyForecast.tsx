@@ -72,7 +72,7 @@ const getWeatherIcon = (iconCode: string) => {
 const hourlyForecast = ({
   hourlyForecastWeatherData,
 }: HourlyForecastWeatherDataPropsType) => {
-  console.log(hourlyForecastWeatherData);
+  // console.log(hourlyForecastWeatherData);
 
   return (
     <div className={style.hourlyCard}>

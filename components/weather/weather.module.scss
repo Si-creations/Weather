@@ -2,6 +2,35 @@
   text-align: center;
 }
 
+.temp{
+  font-size: 2rem;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeFlexbox{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.timeFlexboxr{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.line{
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  margin: 10px 0px;
+}
+
 @media screen and (max-width: 600px) {
   .main {
     min-height: 100vh;

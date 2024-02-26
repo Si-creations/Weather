@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import Image from "next/image";
 import clearSky from "../img/01d@2x.png";
 import fewClouds from "../img/02d@2x.png";
@@ -20,18 +20,14 @@ import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
 import { WeatherDataPropsType } from "@/types/weatherDataType";
 import style from "./weather.module.scss";
-import DaylyForecast from "../daylyForecast/dailyForecast";
 
-const Weather = ({
-  weatherData,
-  daylyForecastWeatherData,
-}: WeatherDataPropsType) => {
+const Weather = ({ weatherData }: WeatherDataPropsType) => {
   const temp = Math.round(weatherData.main.temp);
   const feelsLikeTemp = Math.round(weatherData.main.feels_like);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
 
-  const formatTime = (UTC) => {
+  const formatTime = (UTC: number) => {
     const utcValue = new Date(UTC * 1000);
     const formatedUtc = utcValue.toLocaleString().split(" ");
     const selectTime = formatedUtc[formatedUtc.length - 1]
@@ -43,7 +39,7 @@ const Weather = ({
   };
 
   const sunrise = formatTime(weatherData.sys.sunrise);
-  const sunset = formatTime(weatherData.sys.sunset)
+  const sunset = formatTime(weatherData.sys.sunset);
 
   const getWeatherIcon = (iconCode: string) => {
     switch (iconCode) {
@@ -91,8 +87,8 @@ const Weather = ({
   return (
     <div className={style.main}>
       <div>
-        <h2>{weatherData.name}</h2>
-        <p className="icon inline-block">
+        <h1>{weatherData.name}</h1>
+        <div className="icon inline-block">
           <Image
             src={getWeatherIcon(icon)}
             alt="Weather Icon"
@@ -100,17 +96,39 @@ const Weather = ({
             height={150}
             priority={true}
           />
-        </p>
-        <p>{temp}°C</p>
-        <p>Pocitovo: {feelsLikeTemp}°C</p>
-        <p>{weatherData.weather[0].description}</p>
-        <p>Vlhkosť: {weatherData.main.humidity}%</p>
-        <p>Vietor: {wind} km/hod</p>
-        <p>Vychod slnka: {sunrise}</p>
-        <p>Zapad slnka: {sunset}</p>
-        <p>Tlak: {weatherData.main.pressure}mBar</p>
+        </div>
+        <p className={style.temp}>{temp}°C</p>
+        <p className="mb-4">{weatherData.weather[0].description}</p>
+        <div className="">
+          <div className={style.flexbox}>
+            <p>Pocitovo: {feelsLikeTemp}°C</p>
+
+            <p>Vietor: {wind} km/hod</p>
+          </div>
+          <div className={style.line}></div>
+          <div className={style.flexbox}>
+            <p>Vlhkosť: {weatherData.main.humidity}%</p>
+            <p>Tlak: {weatherData.main.pressure}mBar</p>
+          </div>
+          <div className={style.line}></div>
+          <div className={style.flexbox}>
+            <div className="flex items-center">
+              <p>ICON</p>
+              <div className={style.timeFlexbox}>
+                <p>Vychod slnka</p>
+                <p>{sunrise}</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <p>ICON</p>
+              <div className={style.timeFlexboxr}>
+                <p>Zapad slnka</p>
+                <p> {sunset}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <DaylyForecast daylyForecastWeatherData={daylyForecastWeatherData} />
     </div>
   );
 };
