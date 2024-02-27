@@ -52,7 +52,7 @@ export const getDaylyForecastData = async (city) => {
   // console.log(APIkey);
   try {
     const response = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=${APIkey2}&q=${city}&aqi=no&days=3&lang=sk`
+      `https://api.weatherapi.com/v1/forecast.json?key=${APIkey2}&q=${city}&aqi=no&days=3&lang=sk`
     );
     // console.log(response.data);
     return response.data;
