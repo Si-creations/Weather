@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const APIkey = process.env.NEXT_PUBLIC_API_KEY;
+const APIkey2 = process.env.NEXT_PUBLIC_FORECAST_API_KEY;
 
 export const getWeatherData = async (city) => {
   // console.log(APIkey);
@@ -51,7 +52,7 @@ export const getDaylyForecastData = async (city) => {
   // console.log(APIkey);
   try {
     const response = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=a877d10081cf45c7b71122440241302&q=${city}&aqi=no&days=3&lang=sk`
+      `http://api.weatherapi.com/v1/forecast.json?key=${APIkey2}&q=${city}&aqi=no&days=3&lang=sk`
     );
     // console.log(response.data);
     return response.data;
