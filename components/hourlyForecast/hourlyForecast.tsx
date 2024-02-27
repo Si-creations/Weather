@@ -85,7 +85,7 @@ const hourlyForecast = ({
               </p>{" "}
               <p>
                 <Image
-                  className="inline"
+                  className={style.image}
                   src={getWeatherIcon(item.weather[0].icon)}
                   alt="Weather Icon"
                   width={75}

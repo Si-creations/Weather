@@ -1,9 +1,12 @@
 .main {
-  background: linear-gradient(#e49328,  #393984, #010101);
-  min-height: 100vh;
+  background: linear-gradient(#e49328 10%,  #393984, #010101);
+  min-height: 110vh;
+  
+
 }
 
 .searchBox {
+  padding-top: 1rem;
   max-width: fit-content;
   height: fit-content;
   position: relative;
@@ -20,7 +23,7 @@
   outline: none;
   border-radius: 25px;
   transition: all 0.5s ease-in-out;
-  background-color: #2b2a2f0d;
+  background-color: #2b2a2f13;
   padding-right: 40px;
   color: #fff;
 }

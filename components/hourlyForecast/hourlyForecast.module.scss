@@ -1,11 +1,12 @@
 .hourlyCard {
-  max-height: 120px;
+  max-height: 140px;
   max-width: 500px;
   display: flex;
   overflow-x: scroll;
   overflow-y: scroll;
   scrollbar-width: none;
   margin: 0 auto;
+
 }
 
 .hourlyCard ::-webkit-scrollbar {
@@ -16,10 +17,17 @@
 .parameters {
   user-select: none;
   min-width: 100px;
-  height: 110px;
-  line-height: 10px;
+  height: 135px;
+  line-height: 20px;
   text-align: center;
-  margin-right: 2px;
+  margin-right: 5px;
+  background-color: #363b3552;
+  padding: 12px 0px;
+  border-radius: 10%;
+}
+
+.image{
+  display:inline;
 }
 
 

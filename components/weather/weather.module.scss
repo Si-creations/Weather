@@ -1,9 +1,26 @@
 .main {
   text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  min-width: 330px;
+
+  p {
+    color: rgb(197, 196, 196);
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
 }
 
-.temp{
+.temp {
+  font-size: 3rem;
+  line-height: .7;
+  font-weight: 600;
+}
+
+.description {
   font-size: 2rem;
+  margin-bottom: 5rem;
 }
 
 .flexbox {
@@ -11,28 +28,33 @@
   justify-content: space-between;
 }
 
-.timeFlexbox{
+.leftFlexbox {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex-wrap: nowrap;
 }
 
-.timeFlexboxr{
+.rightFlexbox {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.line{
+.line {
   width: 100%;
   height: 1px;
-  background-color: black;
-  margin: 10px 0px;
+  background-color: rgb(118, 117, 117);
+  margin: 20px 0px;
 }
 
-@media screen and (max-width: 600px) {
-  .main {
-    min-height: 100vh;
+.rightMargin {
+  margin-right: 5px;
+
+}
+
+@media screen and (max-width: 370px) {
+  .rightMargin {
+    display: none;
   }
 }

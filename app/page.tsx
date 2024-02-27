@@ -106,21 +106,24 @@ const Home = () => {
       </div>
 
       {weatherData && <Weather weatherData={weatherData} />}
-      {/* <div>
-        {location.loaded
-          ? JSON.stringify(location)
-          : "Location data not available yet."}
-      </div> */}
       <HourlyForecast
         hourlyForecastWeatherData={
           hourlyForecastWeatherData as HourlyForecastWeatherDataType
         }
       />
-      <DaylyForecast
-        daylyForecastWeatherData={
-          daylyForecastData as DaylyForecastWeatherDataType
-        }
-      />
+      {daylyForecastData && (
+        <DaylyForecast
+          daylyForecastWeatherData={
+            daylyForecastData as DaylyForecastWeatherDataType
+          }
+        />
+      )}
+
+      {/* <div>
+          {location.loaded
+            ? JSON.stringify(location)
+            : "Location data not available yet."}
+        </div> */}
     </div>
   );
 };

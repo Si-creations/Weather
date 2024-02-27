@@ -18,6 +18,8 @@ import rain2 from "../img/10n@2x.png";
 import thunderstorm2 from "../img/11n@2x.png";
 import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
+import Sunrise from "../img/sunrise.png";
+import Sunset from "../img/sunset.png";
 import { WeatherDataPropsType } from "@/types/weatherDataType";
 import style from "./weather.module.scss";
 
@@ -92,38 +94,67 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
           <Image
             src={getWeatherIcon(icon)}
             alt="Weather Icon"
-            width={150}
-            height={150}
+            width={170}
+            height={170}
             priority={true}
           />
         </div>
-        <p className={style.temp}>{temp}°C</p>
-        <p className="mb-4">{weatherData.weather[0].description}</p>
-        <div className="">
+        <h1 className={style.temp}>{temp}°C</h1>
+        <h2 className={style.description}>{weatherData.weather[0].description}</h2>
+        <div>
           <div className={style.flexbox}>
-            <p>Pocitovo: {feelsLikeTemp}°C</p>
-
-            <p>Vietor: {wind} km/hod</p>
+            <div className={style.leftFlexbox}>
+              <p>Pocitovo</p>
+              <h3>{feelsLikeTemp}°C</h3>
+            </div>
+            <div className={style.rightFlexbox}>
+              <p>Vietor</p>
+              <h3>{wind} km/h</h3>
+            </div>
           </div>
           <div className={style.line}></div>
           <div className={style.flexbox}>
-            <p>Vlhkosť: {weatherData.main.humidity}%</p>
-            <p>Tlak: {weatherData.main.pressure}mBar</p>
+            <div className={style.leftFlexbox}>
+              <p>Vlhkosť</p>
+              <h3>{weatherData.main.humidity}%</h3>
+            </div>
+            <div className={style.rightFlexbox}>
+              <p>Tlak</p>
+              <h3>{weatherData.main.pressure}mBar</h3>
+            </div>
           </div>
           <div className={style.line}></div>
           <div className={style.flexbox}>
             <div className="flex items-center">
-              <p>ICON</p>
-              <div className={style.timeFlexbox}>
+              <p>
+                <Image
+                className={style.rightMargin}
+                  src={Sunrise}
+                  alt="Sunrise Icon"
+                  width={64}
+                  height={64}
+                  priority={true}
+                />
+              </p>
+              <div className={style.leftFlexbox}>
                 <p>Vychod slnka</p>
-                <p>{sunrise}</p>
+                <h3>{sunrise}</h3>
               </div>
             </div>
             <div className="flex items-center">
-              <p>ICON</p>
-              <div className={style.timeFlexboxr}>
+              <p>
+                <Image
+                  className={style.rightMargin}
+                  src={Sunset}
+                  alt="Sunrise Icon"
+                  width={64}
+                  height={64}
+                  priority={true}
+                />
+              </p>
+              <div className={style.rightFlexbox}>
                 <p>Zapad slnka</p>
-                <p> {sunset}</p>
+                <h3> {sunset}</h3>
               </div>
             </div>
           </div>

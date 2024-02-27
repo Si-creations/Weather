@@ -35,7 +35,7 @@ const DaylyForecast = ({
 
   return (
     <div>
-      <button onClick={handleToggle}>Predpoved na 5 dni tu</button>
+      <button className="flex flex-col items-center justify-center" onClick={handleToggle}>Predpoved na 5 dni 👈</button>
       <motion.div
         className={style.main}
         initial={{ opacity: 0, x: "100vw" }}
