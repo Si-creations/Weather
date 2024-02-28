@@ -17,6 +17,11 @@ const DaylyForecast = ({
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+    if (!isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
   };
 
   function getDayOfWeek(dateString: string) {
