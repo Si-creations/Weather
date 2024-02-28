@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+$font-family: Josefin Sans, sans-serif;
+
 .main {
   text-align: center;
   padding: 1.5rem;
   margin-bottom: 2rem;
   min-width: 330px;
+  font-family: $font-family;
 
   p {
     color: rgb(197, 196, 196);
@@ -12,15 +17,20 @@
   }
 }
 
+.cityName {
+  font-size: 1.5rem;
+}
+
 .temp {
   font-size: 3rem;
-  line-height: .7;
+  line-height: 0.7;
   font-weight: 600;
 }
 
 .description {
   font-size: 2rem;
   margin-bottom: 5rem;
+  text-transform: capitalize;
 }
 
 .flexbox {
@@ -50,7 +60,6 @@
 
 .rightMargin {
   margin-right: 5px;
-
 }
 
 @media screen and (max-width: 370px) {

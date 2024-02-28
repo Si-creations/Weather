@@ -2,6 +2,7 @@ export type DaylyForecastWeatherDataType = {
   forecast: {
     forecastday: {
       map: Function;
+      length: number;
     };
   };
   day: {

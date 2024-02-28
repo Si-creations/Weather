@@ -6,6 +6,7 @@ import style from "./dailyForecast.module.scss";
 import Image from "next/image";
 import { DaylyForecastDataPropsType } from "@/types/weatherDataType";
 import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
+import { FaArrowLeft } from "react-icons/fa6";
 
 const DaylyForecast = ({
   daylyForecastWeatherData,
@@ -35,7 +36,13 @@ const DaylyForecast = ({
 
   return (
     <div>
-      <button className="flex flex-col items-center justify-center" onClick={handleToggle}>Predpoved na 5 dni 👈</button>
+      <motion.button
+        onClick={handleToggle}
+        className={style.button}
+        whileTap={{ scale: 0.9 }}
+      >
+        Predpoved na 5 dni
+      </motion.button>
       <motion.div
         className={style.main}
         initial={{ opacity: 0, x: "100vw" }}
@@ -52,56 +59,64 @@ const DaylyForecast = ({
           alignItems: "center",
         }}
       >
-        <p>Denna predpoved:</p>
+        <div className={style.closeBtn}>
+          <FaArrowLeft />
+          <button onClick={handleToggle}>Naspäť</button>
+        </div>
+        <p className={style.title}>Denná predpoveď</p>
         {daylyForecastWeatherData &&
           daylyForecastWeatherData.forecast.forecastday.map(
             (item: DaylyForecastWeatherDataType, index: number) => (
-              <div key={index} className="w-full px-4">
-                <div className="flex justify-between gap-4 bg-red-400 ">
+              <div key={index} className={style.mainContainer}>
+                <div className={style.weatherContainer}>
                   <p>{getDayOfWeek(item.date)}</p>
-                  <div className="flex items-center">
+                  <div className={style.imgContainer}>
                     <Image
                       src={`https:${item.day.condition.icon}`}
                       alt="Weather Icon"
-                      width={50}
-                      height={50}
+                      width={70}
+                      height={70}
                       priority={true}
                     />
                     <p>{item.day.condition.text}</p>
                   </div>
-                  <p>
-                    {Math.round(item.day.maxtemp_c)} /{" "}
-                    {Math.round(item.day.mintemp_c)}
+                  <p className={style.temp}>
+                    {Math.round(item.day.maxtemp_c)}°/{" "}
+                    {Math.round(item.day.mintemp_c)}°
                   </p>
                 </div>
+                <div className={style.line}></div>
               </div>
             )
           )}
         {daylyForecastWeatherData &&
           daylyForecastWeatherData.forecast.forecastday.map(
             (item: DaylyForecastWeatherDataType, index: number) => (
-              <div key={index} className="w-full px-4">
-                <div className="flex justify-between gap-4 bg-red-400 ">
+              <div key={index} className={style.mainContainer}>
+                <div className={style.weatherContainer}>
                   <p>{getDayOfWeek(item.date)}</p>
-                  <div className="flex items-center">
+                  <div className={style.imgContainer}>
                     <Image
                       src={`https:${item.day.condition.icon}`}
                       alt="Weather Icon"
-                      width={50}
-                      height={50}
+                      width={70}
+                      height={70}
                       priority={true}
                     />
                     <p>{item.day.condition.text}</p>
                   </div>
-                  <p>
-                    {Math.round(item.day.maxtemp_c)} /{" "}
-                    {Math.round(item.day.mintemp_c)}
+                  <p className={style.temp}>
+                    {Math.round(item.day.maxtemp_c)}°/{" "}
+                    {Math.round(item.day.mintemp_c)}°
                   </p>
                 </div>
+                {index !==
+                  daylyForecastWeatherData.forecast.forecastday.length - 1 && (
+                  <div className={style.line}></div>
+                )}
               </div>
             )
           )}
-        <button onClick={handleToggle}>Zavriet predpoved</button>
       </motion.div>
     </div>
   );

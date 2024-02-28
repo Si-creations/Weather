@@ -112,7 +112,7 @@ const Home = () => {
         }
       />
       {daylyForecastData && (
-        <DaylyForecast
+        <DaylyForecast 
           daylyForecastWeatherData={
             daylyForecastData as DaylyForecastWeatherDataType
           }
