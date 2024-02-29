@@ -18,9 +18,9 @@ const DaylyForecast = ({
   const handleToggle = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
-      document.body.classList.add("no-scroll");
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.classList.remove("no-scroll");
+      document.body.style.overflow = "auto";
     }
   };
 
@@ -64,9 +64,9 @@ const DaylyForecast = ({
           alignItems: "center",
         }}
       >
-        <div className={style.closeBtn}>
+        <div className={style.closeBtn} onClick={handleToggle}>
           <FaArrowLeft />
-          <button onClick={handleToggle}>Naspäť</button>
+          <button>Naspäť</button>
         </div>
         <p className={style.title}>Denná predpoveď</p>
         {daylyForecastWeatherData &&

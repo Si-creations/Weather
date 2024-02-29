@@ -10,7 +10,6 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -20,7 +19,6 @@
 html,
 body {
   max-width: var(--max-width);
-  overflow-x: hidden;
   margin: 0 auto;
   background-color: #d6d90c1b;
   color: #ffffff;
@@ -35,8 +33,4 @@ body ::-webkit-scrollbar {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-.no-scroll {
-  overflow: hidden;
 }
