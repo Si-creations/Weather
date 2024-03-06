@@ -7,6 +7,7 @@ $font-family: Josefin Sans, sans-serif;
   padding: 1.5rem;
   margin-bottom: 2rem;
   min-width: 330px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
   font-family: $font-family;
 
   p {
@@ -67,3 +68,13 @@ $font-family: Josefin Sans, sans-serif;
     display: none;
   }
 }
+
+@media screen and (min-width: 522px) {
+  .line {
+    display: none;
+  }
+  .flexbox{
+    display: none;
+  }
+}
+
