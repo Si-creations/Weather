@@ -15,6 +15,8 @@ const DaylyForecast = ({
 
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
+  
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
@@ -60,21 +62,15 @@ const DaylyForecast = ({
   return (
     <div>
       <div className={style.screen}>
-    
         <div>
           <motion.div className={style.mainScreen}>
-            <div className={style.closeBtn} onClick={handleToggle}>
-              <FaArrowLeft />
-              <button>Naspäť</button>
-            </div>
             <p className={style.title}>Denná predpoveď</p>
             {daylyForecastWeatherData &&
               daylyForecastWeatherData.forecast.forecastday.map(
                 (item: DaylyForecastWeatherDataType, index: number) => (
                   <div key={index} className={style.mainContainer}>
-                    <div className={style.weatherContainer}>
-                      <p>{getDayOfWeek(item.date)}</p>
-                      <div className={style.imgContainer}>
+                    <div className={style.weatherContainerScreen}>
+                      <div className={style.imgContainerScreen}>
                         <Image
                           src={`https:${item.day.condition.icon}`}
                           alt="Weather Icon"
@@ -82,14 +78,19 @@ const DaylyForecast = ({
                           height={70}
                           priority={true}
                         />
-                        <p>{item.day.condition.text}</p>
+
+                        <div>
+                          <p>
+                            {getDayOfWeek(item.date)} 
+                          </p>
+                          <p>{item.day.condition.text}</p>
+                        </div>
                       </div>
-                      <p className={style.temp}>
-                        {Math.round(item.day.maxtemp_c)}°/{" "}
-                        {Math.round(item.day.mintemp_c)}°
-                      </p>
+                      <div className={style.tempFlex}>
+                        <p>{Math.round(item.day.maxtemp_c)}°</p>
+                        <p>{Math.round(item.day.mintemp_c)}°</p>
+                      </div>
                     </div>
-                    <div className={style.line}></div>
                   </div>
                 )
               )}
@@ -97,9 +98,8 @@ const DaylyForecast = ({
               daylyForecastWeatherData.forecast.forecastday.map(
                 (item: DaylyForecastWeatherDataType, index: number) => (
                   <div key={index} className={style.mainContainer}>
-                    <div className={style.weatherContainer}>
-                      <p>{getDayOfWeek(item.date)}</p>
-                      <div className={style.imgContainer}>
+                    <div className={style.weatherContainerScreen}>
+                      <div className={style.imgContainerScreen}>
                         <Image
                           src={`https:${item.day.condition.icon}`}
                           alt="Weather Icon"
@@ -107,16 +107,19 @@ const DaylyForecast = ({
                           height={70}
                           priority={true}
                         />
-                        <p>{item.day.condition.text}</p>
+
+                        <div>
+                          <p>
+                            {getDayOfWeek(item.date)} 
+                          </p>
+                          <p>{item.day.condition.text}</p>
+                        </div>
                       </div>
-                      <p className={style.temp}>
-                        {Math.round(item.day.maxtemp_c)}°/{" "}
-                        {Math.round(item.day.mintemp_c)}°
-                      </p>
+                      <div className={style.tempFlex}>
+                        <p>{Math.round(item.day.maxtemp_c)}°</p>
+                        <p>{Math.round(item.day.mintemp_c)}°</p>
+                      </div>
                     </div>
-                    {index !==
-                      daylyForecastWeatherData.forecast.forecastday.length -
-                        1 && <div className={style.line}></div>}
                   </div>
                 )
               )}
@@ -124,12 +127,12 @@ const DaylyForecast = ({
         </div>
       </div>
       <motion.button
-          onClick={handleToggle}
-          className={style.button}
-          whileTap={{ scale: 0.9 }}
-        >
-          Predpoved na 5 dni
-        </motion.button>
+        onClick={handleToggle}
+        className={style.button}
+        whileTap={{ scale: 0.9 }}
+      >
+        Predpoved na 5 dni
+      </motion.button>
       <motion.div
         className={style.main}
         initial={{ opacity: 0, x: "100vw" }}

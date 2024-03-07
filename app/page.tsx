@@ -27,6 +27,36 @@ const Home = () => {
   const [daylyForecastData, setDaylyForecastData] =
     useState<DaylyForecastWeatherDataType | null>(null);
   const location = useGeolocation();
+  const currentDate = new Date();
+
+  const months = [
+    "januára",
+    "februára",
+    "marca",
+    "apríla",
+    "mája",
+    "júna",
+    "júla",
+    "augusta",
+    "septembra",
+    "októbra",
+    "novembra",
+    "decembra",
+  ];
+
+  const dayOfMonth = currentDate.getDate();
+  const monthName = months[currentDate.getMonth()];
+  const year = currentDate.getFullYear();
+  const hours = ("0" + currentDate.getHours()).slice(-2);
+  const minutes = ("0" + currentDate.getMinutes()).slice(-2);
+  const formattedDate = `${dayOfMonth} ${monthName} ${year} | ${hours}:${minutes}`;
+  const temp = weatherData?.main?.temp
+    ? Math.round(weatherData.main.temp)
+    : undefined;
+
+  const wind = weatherData?.wind?.speed
+    ? Math.round(weatherData.wind.speed * 3.6)
+    : undefined; // convert m/s to km/h
 
   let lat: string | null = "";
   let lng: string | null = "";
@@ -91,61 +121,67 @@ const Home = () => {
 
   return (
     <div className={style.main}>
-      <div className={style.leftFlex}>
-        <div className={style.rowFlex}>
-          <div className={style.searchBox}>
-            <button className={style.btnSearch} onClick={handleSearch}>
-              <FaSearchLocation className="fas fa-search inline" />
-            </button>
-            <input
-              className={style.inputSearch}
-              type="text"
-              placeholder="Zadajte mesto"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-          </div>
-
-          {weatherData && <Weather weatherData={weatherData} />}
-          <HourlyForecast
-            hourlyForecastWeatherData={
-              hourlyForecastWeatherData as HourlyForecastWeatherDataType
-            }
-          />
-        </div>
-        <div>
-          <div className={style.rightBox}>
-            <div className={style.topElement}>
-              {" "}
-              <div className={style.searchBox}>
-                <button className={style.btnSearch} onClick={handleSearch}>
-                  <FaSearchLocation className="fas fa-search inline" />
-                </button>
-                <input
-                  className={style.inputSearch}
-                  type="text"
-                  placeholder="Zadajte mesto"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                />
-                <div>{weatherData.main.temp}</div>
-              </div>
+      <div className={style.frame}>
+        <div className={style.leftFlex}>
+          <div className={style.rowFlex}>
+            <div className={style.date}>{formattedDate}</div>
+            <div className={style.searchBox}>
+              <button className={style.btnSearch} onClick={handleSearch}>
+                <FaSearchLocation className="fas fa-search inline" />
+              </button>
+              <input
+                className={style.inputSearch}
+                type="text"
+                placeholder="Zadajte mesto"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
             </div>
-
-            {daylyForecastData && (
-              <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
-            )}
+            {weatherData && (<Weather weatherData={weatherData} />)}
+            <div className={style.lineScreen}></div>
+            <div className={style.hourlyScreen}>
+              <HourlyForecast
+                hourlyForecastWeatherData={
+                  hourlyForecastWeatherData as HourlyForecastWeatherDataType
+                }
+              />
+            </div>
           </div>
-        </div>
-      </div>
+          <div>
+            <div className={style.rightBox}>
+              <div className={style.topElement}>
+                <div className={style.searchBoxScreen}>
+                  <button className={style.btnSearch} onClick={handleSearch}>
+                    <FaSearchLocation className="fas fa-search inline" />
+                  </button>
+                  <input
+                    className={style.inputSearch}
+                    type="text"
+                    placeholder="Zadajte mesto"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                  />
+                </div>
+                <div className={style.temp}>{temp}°C</div>
+                <div className={style.wind}>{wind}km/h</div>
+                <div className={style.line}></div>
+              </div>
 
-      {/* <div>
+              {daylyForecastData && (
+                <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
+              )}
+            </div>
+          </div>
+
+          {/* <div>
           {location.loaded
             ? JSON.stringify(location)
             : "Location data not available yet."}
         </div> */}
+        </div>
+      </div>
     </div>
   );
 };

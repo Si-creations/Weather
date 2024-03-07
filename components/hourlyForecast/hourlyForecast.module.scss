@@ -2,7 +2,6 @@
 
 $font-family: Josefin Sans, sans-serif;
 
-
 .hourlyCard {
   max-height: 140px;
   max-width: 500px;
@@ -11,7 +10,6 @@ $font-family: Josefin Sans, sans-serif;
   overflow-y: scroll;
   scrollbar-width: none;
   margin: 0 auto;
-
 }
 
 .hourlyCard ::-webkit-scrollbar {
@@ -32,8 +30,29 @@ $font-family: Josefin Sans, sans-serif;
   font-family: $font-family;
 }
 
-.image{
-  display:inline;
+.image {
+  display: inline;
 }
 
-
+@media screen and (min-width: 522px) {
+  .hourlyCard {
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+  
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .parameters {
+      user-select: none;
+      min-width: 85px;
+      height: 140px;
+      line-height: 20px;
+      text-align: center;
+      margin-right: 10px;
+      background-color: #363b3552;
+      padding: 12px 0px;
+      border-radius: 10%;
+      font-family: $font-family;
+    }
+  }
+}

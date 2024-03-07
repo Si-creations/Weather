@@ -1,7 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+$font-family: Josefin Sans, sans-serif;
+
 .main {
-  background: linear-gradient(#e49328 10%, #393984, #010101);
   min-height: 100vh;
+  width: 100%;
   text-align: center;
+  font-family: $font-family;
+}
+
+.date {
+  position: absolute;
+  top: 2rem;
 }
 
 .searchBox {
@@ -12,6 +22,16 @@
   margin: 0 auto;
   overflow: hidden;
 }
+
+.searchBoxScreen {
+  padding-top: 1rem;
+  max-width: fit-content;
+  height: fit-content;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
 .inputSearch {
   height: 50px;
   width: 50px;
@@ -63,29 +83,87 @@
 }
 
 @media screen and (min-width: 522px) {
-  .main {
+  .frame {
+    padding: 0rem;
     max-height: 100vh;
+  }
+
+  .main{
+    font-size: 120%;
   }
 
   .rowFlex {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0 2rem;
+    width: 100%;
+    min-width: 700px;
+    padding-bottom: 2rem;
+
+    .hourlyScreen {
+      align-self: center;
+    }
   }
+
   .leftFlex {
     display: flex;
   }
 
   .rightBox {
-    width: 450px;
-    background-color: rgba(255, 0, 0, 0.356);
-    max-height: 100vh;
+    min-width: 440px;
+    background-color: #595a5933; //#595a5933;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .searchBoxScreen{
+    padding: 1rem 0;
+   
+  }
+
+  .searchBox {
+    display: none;
+  }
+
+  .lineScreen {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(118, 117, 117);
+    margin: 35px 0px;
+  }
+
+  .temp {
+    font-size: 4.5rem;
+  }
+
+  .wind{
+    font-size: 1.3rem;
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(118, 117, 117);
+    margin: 40px 0px;
+  }
+
+  .date{
+    font-size: 1.2rem;
   }
 }
 
 @media screen and (max-width: 522px) {
   .main {
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(#e49328 10%, #393984, #010101);
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
   }
   .topElement {
+    display: none;
+  }
+  .date {
     display: none;
   }
 }

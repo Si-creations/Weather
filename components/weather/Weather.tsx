@@ -90,7 +90,7 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
     <div className={style.main}>
       <div>
         <h1 className={style.cityName}>{weatherData.name}</h1>
-        <div className="icon inline-block uppercase" >
+        <div className={style.icon}>
           <Image
             src={getWeatherIcon(icon)}
             alt="Weather Icon"

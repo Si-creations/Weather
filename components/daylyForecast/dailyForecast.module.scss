@@ -79,9 +79,6 @@ $font-family: Josefin Sans, sans-serif;
   display: flex;
   align-items: center;
   gap: 5px;
-  @media screen and (min-width: 422px) {
-    display: none;
-  }
 }
 
 .temp {
@@ -96,14 +93,40 @@ $font-family: Josefin Sans, sans-serif;
 }
 
 @media screen and (min-width: 522px) {
+ 
+  .weatherContainerScreen{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .imgContainerScreen{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 5px;
+  }
+
+  .tempFlex {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    align-items: flex-end;
+  }
+
   .main {
     display: none;
   }
-  .button{
+  .button {
     display: none;
   }
-
-  
+  .line {
+    display: none;
+  }
+  .closeBtn {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 522px) {

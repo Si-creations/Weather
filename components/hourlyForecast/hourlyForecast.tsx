@@ -93,7 +93,7 @@ const hourlyForecast = ({
                   priority={true}
                 />
               </p>
-              <p>{Math.round(item.main.temp)}°</p>
+              <p>{Math.round(item.main.temp)}°C</p>
             </div>
           )
         )}
