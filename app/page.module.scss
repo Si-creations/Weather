@@ -100,6 +100,7 @@ $font-family: Josefin Sans, sans-serif;
     align-items: flex-end;
     padding: 0 2rem;
     padding-bottom: 2rem;
+    min-height: 450px;
 
     .hourlyScreen {
       align-self: center;
@@ -113,9 +114,10 @@ $font-family: Josefin Sans, sans-serif;
   .rightBox {
     width: 100%;
     background-color: #595a5933; //#595a5933;
-    min-height: 100vh;
     padding: 2rem;
     max-height: 100vh;
+    overflow: auto;
+    min-height: 450px;
   }
 
   .searchBoxScreen {

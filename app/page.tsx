@@ -148,7 +148,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div>
+          <div className={style.rightContainer}>
             <div className={style.rightBox}>
               <div className={style.topElement}>
                 <div className={style.searchBoxScreen}>
