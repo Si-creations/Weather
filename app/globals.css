@@ -22,7 +22,6 @@ body {
   margin: 0 auto;
   color: #ffffff;
   scrollbar-width: none;
-  max-height: 100vh;
 }
 
 body{
@@ -30,7 +29,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  max-height: 100vh;
+  min-height: 100vh;
 }
 
 body ::-webkit-scrollbar {

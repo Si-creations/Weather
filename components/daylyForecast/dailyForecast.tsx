@@ -15,8 +15,6 @@ const DaylyForecast = ({
 
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
-  
-
   const handleToggle = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
@@ -25,24 +23,6 @@ const DaylyForecast = ({
       document.body.style.overflow = "auto";
     }
   };
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Získanie šírky okna
-      const windowWidth = window.innerWidth;
-
-      // Nastavenie stavu podľa šírky okna
-      setIsOpen(windowWidth > 522); // napríklad, ak je šírka okna menšia ako 768px, je považovaná za mobilné zariadenie
-    };
-
-    // Pripojenie udalosti resize
-    window.addEventListener("resize", handleResize);
-
-    // Odpojenie udalosti resize po odmontovaní komponentu
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   function getDayOfWeek(dateString: string) {
     const days = [
@@ -62,69 +42,61 @@ const DaylyForecast = ({
   return (
     <div>
       <div className={style.screen}>
-        <div>
-          <motion.div className={style.mainScreen}>
-            <p className={style.title}>Denná predpoveď</p>
-            {daylyForecastWeatherData &&
-              daylyForecastWeatherData.forecast.forecastday.map(
-                (item: DaylyForecastWeatherDataType, index: number) => (
-                  <div key={index} className={style.mainContainer}>
-                    <div className={style.weatherContainerScreen}>
-                      <div className={style.imgContainerScreen}>
-                        <Image
-                          src={`https:${item.day.condition.icon}`}
-                          alt="Weather Icon"
-                          width={70}
-                          height={70}
-                          priority={true}
-                        />
+        <p className={style.title}>Denná predpoveď</p>
+        {daylyForecastWeatherData &&
+          daylyForecastWeatherData.forecast.forecastday.map(
+            (item: DaylyForecastWeatherDataType, index: number) => (
+              <div key={index} className={style.mainContainer}>
+                <div className={style.weatherContainerScreen}>
+                  <div className={style.imgContainerScreen}>
+                    <Image
+                      src={`https:${item.day.condition.icon}`}
+                      alt="Weather Icon"
+                      width={70}
+                      height={70}
+                      priority={true}
+                    />
 
-                        <div>
-                          <p>
-                            {getDayOfWeek(item.date)} 
-                          </p>
-                          <p>{item.day.condition.text}</p>
-                        </div>
-                      </div>
-                      <div className={style.tempFlex}>
-                        <p>{Math.round(item.day.maxtemp_c)}°</p>
-                        <p>{Math.round(item.day.mintemp_c)}°</p>
-                      </div>
+                    <div>
+                      <p>{getDayOfWeek(item.date)}</p>
+                      <p>{item.day.condition.text}</p>
                     </div>
                   </div>
-                )
-              )}
-            {daylyForecastWeatherData &&
-              daylyForecastWeatherData.forecast.forecastday.map(
-                (item: DaylyForecastWeatherDataType, index: number) => (
-                  <div key={index} className={style.mainContainer}>
-                    <div className={style.weatherContainerScreen}>
-                      <div className={style.imgContainerScreen}>
-                        <Image
-                          src={`https:${item.day.condition.icon}`}
-                          alt="Weather Icon"
-                          width={70}
-                          height={70}
-                          priority={true}
-                        />
+                  <div className={style.tempFlex}>
+                    <p>{Math.round(item.day.maxtemp_c)}°</p>
+                    <p>{Math.round(item.day.mintemp_c)}°</p>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
+        {daylyForecastWeatherData &&
+          daylyForecastWeatherData.forecast.forecastday.map(
+            (item: DaylyForecastWeatherDataType, index: number) => (
+              <div key={index} className={style.mainContainer}>
+                <div className={style.weatherContainerScreen}>
+                  <div className={style.imgContainerScreen}>
+                    <Image
+                      src={`https:${item.day.condition.icon}`}
+                      alt="Weather Icon"
+                      width={70}
+                      height={70}
+                      priority={true}
+                    />
 
-                        <div>
-                          <p>
-                            {getDayOfWeek(item.date)} 
-                          </p>
-                          <p>{item.day.condition.text}</p>
-                        </div>
-                      </div>
-                      <div className={style.tempFlex}>
-                        <p>{Math.round(item.day.maxtemp_c)}°</p>
-                        <p>{Math.round(item.day.mintemp_c)}°</p>
-                      </div>
+                    <div>
+                      <p>{getDayOfWeek(item.date)}</p>
+                      <p>{item.day.condition.text}</p>
                     </div>
                   </div>
-                )
-              )}
-          </motion.div>
-        </div>
+                  <div className={style.tempFlex}>
+                    <p>{Math.round(item.day.maxtemp_c)}°</p>
+                    <p>{Math.round(item.day.mintemp_c)}°</p>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
       </div>
       <motion.button
         onClick={handleToggle}
