@@ -46,7 +46,7 @@ const DaylyForecast = ({
         {daylyForecastWeatherData &&
           daylyForecastWeatherData.forecast.forecastday.map(
             (item: DaylyForecastWeatherDataType, index: number) => (
-              <div key={index} className={style.mainContainer}>
+              <div key={index} className={style.mainContainerScreen}>
                 <div className={style.weatherContainerScreen}>
                   <div className={style.imgContainerScreen}>
                     <Image
@@ -73,7 +73,7 @@ const DaylyForecast = ({
         {daylyForecastWeatherData &&
           daylyForecastWeatherData.forecast.forecastday.map(
             (item: DaylyForecastWeatherDataType, index: number) => (
-              <div key={index} className={style.mainContainer}>
+              <div key={index} className={style.mainContainerScreen}>
                 <div className={style.weatherContainerScreen}>
                   <div className={style.imgContainerScreen}>
                     <Image

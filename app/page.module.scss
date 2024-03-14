@@ -88,10 +88,6 @@ $font-family: Josefin Sans, sans-serif;
     max-height: 100vh;
   }
 
-  .main {
-    font-size: 120%;
-  }
-
   .rowFlex {
     flex: 1;
     display: flex;
@@ -136,7 +132,7 @@ $font-family: Josefin Sans, sans-serif;
   }
 
   .temp {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
   }
 
   .wind {
@@ -165,5 +161,14 @@ $font-family: Josefin Sans, sans-serif;
   }
   .date {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .main {
+    font-size: 120%;
+  }
+  .temp {
+    font-size: 4.5rem;
   }
 }
