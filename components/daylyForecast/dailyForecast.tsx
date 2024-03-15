@@ -11,7 +11,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 const DaylyForecast = ({
   daylyForecastWeatherData,
 }: DaylyForecastDataPropsType) => {
-  console.log(daylyForecastWeatherData);
+  // console.log(daylyForecastWeatherData);
 
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 

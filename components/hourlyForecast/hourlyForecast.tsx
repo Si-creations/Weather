@@ -74,6 +74,28 @@ const hourlyForecast = ({
 }: HourlyForecastWeatherDataPropsType) => {
   // console.log(hourlyForecastWeatherData);
 
+  const adjustTimeWithTimezone = (timeString: string) => {
+    const timezoneOffset = hourlyForecastWeatherData.city.timezone;
+    const [datePart, timePart] = timeString.split(" ");
+    const [year, month, day] = datePart.split("-");
+    const [hours, minutes, seconds] = timePart.split(":").map(Number);
+    const date = new Date(
+      Date.UTC(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        hours,
+        minutes,
+        seconds
+      )
+    );
+    const adjustedTime = new Date(date.getTime() + timezoneOffset * 1000);
+    return adjustedTime.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <div className={style.hourlyCard}>
       {hourlyForecastWeatherData &&
@@ -81,7 +103,7 @@ const hourlyForecast = ({
           (item: HourlyForecastWeatherDataType, index: number) => (
             <div className={style.parameters} key={index}>
               <p>
-                {index === 0 ? "Teraz" : item.dt_txt.split(" ")[1].slice(0, 5)}
+                {index === 0 ? "Teraz" : adjustTimeWithTimezone(item.dt_txt)}
               </p>{" "}
               <p>
                 <Image

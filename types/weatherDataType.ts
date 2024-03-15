@@ -1,6 +1,7 @@
 import { DaylyForecastWeatherDataType } from "./daylyDataType";
 
 export type WeatherDataType = {
+  timezone: number;
   name: string;
   main: {
     temp: number;

@@ -42,7 +42,8 @@ $font-family: Josefin Sans, sans-serif;
     overflow-x: scroll;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap:10px;
+    gap: 10px;
+    margin-bottom: 1rem;
     .parameters {
       user-select: none;
       min-width: 85px;

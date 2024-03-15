@@ -28,9 +28,11 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
   const feelsLikeTemp = Math.round(weatherData.main.feels_like);
   const wind = Math.round(weatherData.wind.speed * 3.6); // convert m/s to km/h
   const icon = weatherData.weather[0].icon;
+  const timezoneOffset = weatherData.timezone;
+
 
   const formatTime = (UTC: number) => {
-    const utcValue = new Date(UTC * 1000);
+    const utcValue = new Date((UTC + timezoneOffset) * 1000);
     const formatedUtc = utcValue.toLocaleString().split(" ");
     const selectTime = formatedUtc[formatedUtc.length - 1]
       .split(":")
@@ -100,7 +102,9 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
           />
         </div>
         <h1 className={style.temp}>{temp}°C</h1>
-        <h2 className={style.description}>{weatherData.weather[0].description}</h2>
+        <h2 className={style.description}>
+          {weatherData.weather[0].description}
+        </h2>
         <div>
           <div className={style.flexbox}>
             <div className={style.leftFlexbox}>
@@ -128,7 +132,7 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
             <div className="flex items-center">
               <p>
                 <Image
-                className={style.rightMargin}
+                  className={style.rightMargin}
                   src={Sunrise}
                   alt="Sunrise Icon"
                   width={64}

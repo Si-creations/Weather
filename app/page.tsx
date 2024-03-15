@@ -138,7 +138,7 @@ const Home = () => {
                 onKeyDown={handleKeyDown}
               />
             </div>
-            {weatherData && (<Weather weatherData={weatherData} />)}
+            {weatherData && <Weather weatherData={weatherData} />}
             <div className={style.lineScreen}></div>
             <div className={style.hourlyScreen}>
               <HourlyForecast
@@ -152,17 +152,17 @@ const Home = () => {
             <div className={style.rightBox}>
               <div className={style.topElement}>
                 <div className={style.searchBoxScreen}>
-                  <button className={style.btnSearch} onClick={handleSearch}>
-                    <FaSearchLocation className="fas fa-search inline" />
-                  </button>
                   <input
-                    className={style.inputSearch}
+                    className={style.inputScreen}
                     type="text"
                     placeholder="Zadajte mesto"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     onKeyDown={handleKeyDown}
                   />
+                  <button className={style.btnScreen} onClick={handleSearch}>
+                    <FaSearchLocation className="fas fa-search inline" />
+                  </button>
                 </div>
                 <div className={style.temp}>{temp}°C</div>
                 <div className={style.wind}>{wind}km/h</div>
