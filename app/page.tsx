@@ -82,7 +82,6 @@ const Home = () => {
 
   const handleKeyDown = (event: { key: string }) => {
     if (event.key === "Enter") {
-      // Spustenie funkcie pri stlačení klávesy Enter
       handleSearch();
     }
   };
