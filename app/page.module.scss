@@ -9,11 +9,6 @@ $font-family: Josefin Sans, sans-serif;
   font-family: $font-family;
 }
 
-.date {
-  position: absolute;
-  top: 2rem;
-}
-
 .searchBox {
   padding-top: 2rem;
   max-width: fit-content;
@@ -83,9 +78,14 @@ $font-family: Josefin Sans, sans-serif;
 }
 
 @media screen and (min-width: 850px) {
-  .frame {
-    padding: 0rem;
+  .main {
+    padding: 1.3rem;
     max-height: 100vh;
+  }
+  .background {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .rowFlex {
@@ -113,7 +113,6 @@ $font-family: Josefin Sans, sans-serif;
     padding: 2rem;
     max-height: 100vh;
     overflow: auto;
-    min-height: 100vh;
   }
 
   .searchBox {
@@ -143,6 +142,8 @@ $font-family: Josefin Sans, sans-serif;
   }
 
   .date {
+    position: absolute;
+    top: 3rem;
     font-size: 1.2rem;
   }
 
@@ -154,6 +155,9 @@ $font-family: Josefin Sans, sans-serif;
   }
   .btnScreen {
     padding: 0.5rem;
+  }
+  .searchBoxScreen {
+    padding-top: 0;
   }
 }
 
@@ -180,7 +184,9 @@ $font-family: Josefin Sans, sans-serif;
   .rowFlex {
     padding: 0 3rem;
   }
-  .rightBox {
-    overflow: -moz-hidden-unscrollable;
+
+  .frame {
+    border: 8px solid rgb(110, 107, 107);
+    border-radius: 20px;
   }
 }

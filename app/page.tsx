@@ -17,6 +17,9 @@ import { WeatherDataType } from "@/types/weatherDataType";
 import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
 import { HourlyForecastWeatherDataType } from "@/types/hourlyDataTypes";
 import { FaSearchLocation } from "react-icons/fa";
+import backgroundImg from "@/public/car.jpg";
+import backgroundImg1 from "@/public/automotive.jpg";
+import backgroundImg2 from "@/public/black-luts.jpg"
 
 const Home = () => {
   const [city, setCity] = useState<string>("");
@@ -26,6 +29,7 @@ const Home = () => {
     useState<HourlyForecastWeatherDataType | null>(null);
   const [daylyForecastData, setDaylyForecastData] =
     useState<DaylyForecastWeatherDataType | null>(null);
+  const [backgroundImage, setBackgroundImage] = useState("");
   const location = useGeolocation();
   const currentDate = new Date();
 
@@ -110,6 +114,16 @@ const Home = () => {
   useEffect(() => {
     if (weatherData && weatherData.name) {
       setInitCity(weatherData.name);
+      const iconCode = weatherData.weather[0].icon;
+      console.log(iconCode);
+
+      if (iconCode === "01d" || iconCode === "01n") {
+        setBackgroundImage(backgroundImg.src);
+      } else if(iconCode === "10d" || iconCode === "10n") {
+        setBackgroundImage(backgroundImg1.src)
+      } else {
+        setBackgroundImage(backgroundImg2.src)
+      }
     }
   }, [weatherData]);
 
@@ -120,66 +134,71 @@ const Home = () => {
   }, [initCity]);
 
   return (
-    <div className={style.main}>
-      <div className={style.frame}>
-        <div className={style.leftFlex}>
-          <div className={style.rowFlex}>
-            <div className={style.date}>{formattedDate}</div>
-            <div className={style.searchBox}>
-              <button className={style.btnSearch} onClick={handleSearch}>
-                <FaSearchLocation className="fas fa-search inline" />
-              </button>
-              <input
-                className={style.inputSearch}
-                type="text"
-                placeholder="Zadajte mesto"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-            </div>
-            {weatherData && <Weather weatherData={weatherData} />}
-            <div className={style.lineScreen}></div>
-            <div className={style.hourlyScreen}>
-              <HourlyForecast
-                hourlyForecastWeatherData={
-                  hourlyForecastWeatherData as HourlyForecastWeatherDataType
-                }
-              />
-            </div>
-          </div>
-          <div className={style.rightContainer}>
-            <div className={style.rightBox}>
-              <div className={style.topElement}>
-                <div className={style.searchBoxScreen}>
-                  <input
-                    className={style.inputScreen}
-                    type="text"
-                    placeholder="Zadajte mesto"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                  />
-                  <button className={style.btnScreen} onClick={handleSearch}>
-                    <FaSearchLocation className="fas fa-search inline" />
-                  </button>
-                </div>
-                <div className={style.temp}>{temp}°C</div>
-                <div className={style.wind}>{wind}km/h</div>
-                <div className={style.line}></div>
+    <div
+      className={style.background}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className={style.main}>
+        <div className={style.frame}>
+          <div className={style.leftFlex}>
+            <div className={style.rowFlex}>
+              <div className={style.date}>{formattedDate}</div>
+              <div className={style.searchBox}>
+                <button className={style.btnSearch} onClick={handleSearch}>
+                  <FaSearchLocation className="fas fa-search inline" />
+                </button>
+                <input
+                  className={style.inputSearch}
+                  type="text"
+                  placeholder="Zadajte mesto"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
               </div>
-
-              {daylyForecastData && (
-                <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
-              )}
+              {weatherData && <Weather weatherData={weatherData} />}
+              <div className={style.lineScreen}></div>
+              <div className={style.hourlyScreen}>
+                <HourlyForecast
+                  hourlyForecastWeatherData={
+                    hourlyForecastWeatherData as HourlyForecastWeatherDataType
+                  }
+                />
+              </div>
             </div>
-          </div>
+            <div className={style.rightContainer}>
+              <div className={style.rightBox}>
+                <div className={style.topElement}>
+                  <div className={style.searchBoxScreen}>
+                    <input
+                      className={style.inputScreen}
+                      type="text"
+                      placeholder="Zadajte mesto"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                    />
+                    <button className={style.btnScreen} onClick={handleSearch}>
+                      <FaSearchLocation className="fas fa-search inline" />
+                    </button>
+                  </div>
+                  <div className={style.temp}>{temp}°C</div>
+                  <div className={style.wind}>{wind}km/h</div>
+                  <div className={style.line}></div>
+                </div>
 
-          {/* <div>
+                {daylyForecastData && (
+                  <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
+                )}
+              </div>
+            </div>
+
+            {/* <div>
           {location.loaded
             ? JSON.stringify(location)
             : "Location data not available yet."}
         </div> */}
+          </div>
         </div>
       </div>
     </div>
