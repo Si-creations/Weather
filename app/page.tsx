@@ -17,9 +17,24 @@ import { WeatherDataType } from "@/types/weatherDataType";
 import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
 import { HourlyForecastWeatherDataType } from "@/types/hourlyDataTypes";
 import { FaSearchLocation } from "react-icons/fa";
-import backgroundImg from "@/public/car.jpg";
-import backgroundImg1 from "@/public/automotive.jpg";
-import backgroundImg2 from "@/public/black-luts.jpg"
+import clearSky from "@/public/clear_sky.jpg";
+import clearN from "@/public/clearN.jpg";
+import fewClouds from "@/public/fewClouds.jpg";
+import fewCloudsN from "@/public/fewCloudsN.jpg";
+import scatteredClouds from "@/public/scatteredClouds.jpg";
+import scatteredN from "@/public/scatteredN.jpg";
+import clouds from "@/public/clouds.jpg";
+import cloudsN from "@/public/cloudsN.jpg";
+import showerRain from "@/public/showerRain.jpg";
+import showerRainN from "@/public/showerRainN.jpg";
+import rain from "@/public/rain.jpg";
+import rainN from "@/public/rainN.jpg";
+import thunder from "@/public/thunder.jpg";
+import thunderN from "@/public/thunderN.jpg";
+import snow from "@/public/snow.jpg";
+import snowN from "@/public/snowN.jpg";
+import mist from "@/public/mist.jpg";
+import mistN from "@/public/mistN.jpg";
 
 const Home = () => {
   const [city, setCity] = useState<string>("");
@@ -102,6 +117,68 @@ const Home = () => {
       const daylyForecastData = await getDaylyForecastData(initCity);
       setDaylyForecastData(daylyForecastData);
     } catch (error) {}
+
+    const iconCode = weatherData?.weather[0].icon;
+    console.log(iconCode);
+
+    switch (iconCode) {
+      case "01d":
+        setBackgroundImage(clearSky.src);
+        break;
+      case "01n":
+        setBackgroundImage(clearN.src);
+        break;
+      case "02d":
+        setBackgroundImage(fewClouds.src);
+        break;
+      case "02n":
+        setBackgroundImage(fewCloudsN.src);
+        break;
+      case "03d":
+        setBackgroundImage(scatteredClouds.src);
+        break;
+      case "03n":
+        setBackgroundImage(scatteredN.src);
+        break;
+      case "04d":
+        setBackgroundImage(clouds.src);
+        break;
+      case "04n":
+        setBackgroundImage(cloudsN.src);
+        break;
+      case "09d":
+        setBackgroundImage(showerRain.src);
+        break;
+      case "09n":
+        setBackgroundImage(showerRainN.src);
+        break;
+      case "10d":
+        setBackgroundImage(rain.src);
+        break;
+      case "10n":
+        setBackgroundImage(rainN.src);
+        break;
+      case "11d":
+        setBackgroundImage(thunder.src);
+        break;
+      case "11n":
+        setBackgroundImage(thunderN.src);
+        break;
+      case "13d":
+        setBackgroundImage(snow.src);
+        break;
+      case "13n":
+        setBackgroundImage(snowN.src);
+        break;
+      case "50d":
+        setBackgroundImage(mist.src);
+        break;
+      case "50n":
+        setBackgroundImage(mistN.src);
+        break;
+      default:
+        setBackgroundImage(clearSky.src);
+    }
   };
 
   useEffect(() => {
@@ -113,16 +190,6 @@ const Home = () => {
   useEffect(() => {
     if (weatherData && weatherData.name) {
       setInitCity(weatherData.name);
-      const iconCode = weatherData.weather[0].icon;
-      console.log(iconCode);
-
-      if (iconCode === "01d" || iconCode === "01n") {
-        setBackgroundImage(backgroundImg.src);
-      } else if(iconCode === "10d" || iconCode === "10n") {
-        setBackgroundImage(backgroundImg1.src)
-      } else {
-        setBackgroundImage(backgroundImg2.src)
-      }
     }
   }, [weatherData]);
 
@@ -135,7 +202,9 @@ const Home = () => {
   return (
     <div
       className={style.background}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
     >
       <div className={style.main}>
         <div className={style.frame}>
