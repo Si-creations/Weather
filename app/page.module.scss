@@ -80,12 +80,14 @@ $font-family: Josefin Sans, sans-serif;
 @media screen and (min-width: 850px) {
   .main {
     padding: 1.3rem;
-    max-height: 100vh;
+    // max-height: 100vh;
   }
+
   .background {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
   }
 
   .rowFlex {
@@ -186,7 +188,7 @@ $font-family: Josefin Sans, sans-serif;
   }
 
   .frame {
-    border: 8px solid rgb(110, 107, 107);
+    border: 8px solid rgba(110, 107, 107, 0.457);
     border-radius: 20px;
   }
 }
