@@ -80,14 +80,13 @@ $font-family: Josefin Sans, sans-serif;
 @media screen and (min-width: 850px) {
   .main {
     padding: 1.3rem;
-    // max-height: 100vh;
+    // max-height: 100vh
   }
 
   .background {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
   }
 
   .rowFlex {
@@ -99,6 +98,7 @@ $font-family: Josefin Sans, sans-serif;
     padding: 0 2rem;
     padding-bottom: 2rem;
     min-height: 400px;
+    height: 94vh;
 
     .hourlyScreen {
       align-self: center;
@@ -113,7 +113,7 @@ $font-family: Josefin Sans, sans-serif;
     width: 100%;
     background-color: #595a5933; //#595a5933;
     padding: 2rem;
-    max-height: 100vh;
+    height: 100vh;
     overflow: auto;
   }
 
@@ -151,9 +151,14 @@ $font-family: Josefin Sans, sans-serif;
 
   .inputScreen {
     background: transparent;
-    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 6px 6px;
+    margin-right: 0.5rem;
+    border: 1px solid rgb(75, 72, 72);
+  }
+  .inputScreen:focus {
+    outline: none;
+    border: 1px solid rgb(184, 179, 179);
   }
   .btnScreen {
     padding: 0.5rem;
@@ -190,5 +195,7 @@ $font-family: Josefin Sans, sans-serif;
   .frame {
     border: 8px solid rgba(110, 107, 107, 0.457);
     border-radius: 20px;
+    height: 95vh;
+    overflow: hidden;
   }
 }

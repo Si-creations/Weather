@@ -1,22 +1,27 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import useGeolocation from "./useGeoHook";
+//Components
 import Weather from "../components/weather/Weather";
 import HourlyForecast from "../components/hourlyForecast/hourlyForecast";
 import DaylyForecast from "@/components/daylyForecast/dailyForecast";
-
+import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+//API fetches
 import {
   getWeatherData,
   getLocalWeather,
   getHourlyForecastData,
   getDaylyForecastData,
 } from "./api/fetches/route";
-import useGeolocation from "./useGeoHook";
+//Styles
 import style from "./page.module.scss";
+//Types
 import { WeatherDataType } from "@/types/weatherDataType";
 import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
 import { HourlyForecastWeatherDataType } from "@/types/hourlyDataTypes";
 import { FaSearchLocation } from "react-icons/fa";
+//Background images
 import clearSky from "@/public/clear_sky.jpg";
 import clearN from "@/public/clearN.jpg";
 import fewClouds from "@/public/fewClouds.jpg";
@@ -45,6 +50,7 @@ const Home = () => {
   const [daylyForecastData, setDaylyForecastData] =
     useState<DaylyForecastWeatherDataType | null>(null);
   const [backgroundImage, setBackgroundImage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const location = useGeolocation();
   const currentDate = new Date();
 
@@ -146,17 +152,17 @@ const Home = () => {
       case "04n":
         setBackgroundImage(cloudsN.src);
         break;
-      case "09d":
-        setBackgroundImage(showerRain.src);
-        break;
-      case "09n":
-        setBackgroundImage(showerRainN.src);
-        break;
-      case "10d":
+      case "9d":
         setBackgroundImage(rain.src);
         break;
-      case "10n":
+      case "9n":
         setBackgroundImage(rainN.src);
+        break;
+      case "10d":
+        setBackgroundImage(showerRain.src);
+        break;
+      case "10n":
+        setBackgroundImage(showerRainN.src);
         break;
       case "11d":
         setBackgroundImage(thunder.src);
@@ -179,6 +185,7 @@ const Home = () => {
       default:
         setBackgroundImage(clearSky.src);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -206,69 +213,78 @@ const Home = () => {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <div className={style.main}>
-        <div className={style.frame}>
-          <div className={style.leftFlex}>
-            <div className={style.rowFlex}>
-              <div className={style.date}>{formattedDate}</div>
-              <div className={style.searchBox}>
-                <button className={style.btnSearch} onClick={handleSearch}>
-                  <FaSearchLocation className="fas fa-search inline" />
-                </button>
-                <input
-                  className={style.inputSearch}
-                  type="text"
-                  placeholder="Zadajte mesto"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                />
-              </div>
-              {weatherData && <Weather weatherData={weatherData} />}
-              <div className={style.lineScreen}></div>
-              <div className={style.hourlyScreen}>
-                <HourlyForecast
-                  hourlyForecastWeatherData={
-                    hourlyForecastWeatherData as HourlyForecastWeatherDataType
-                  }
-                />
-              </div>
-            </div>
-            <div className={style.rightContainer}>
-              <div className={style.rightBox}>
-                <div className={style.topElement}>
-                  <div className={style.searchBoxScreen}>
-                    <input
-                      className={style.inputScreen}
-                      type="text"
-                      placeholder="Zadajte mesto"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                    />
-                    <button className={style.btnScreen} onClick={handleSearch}>
-                      <FaSearchLocation className="fas fa-search inline" />
-                    </button>
-                  </div>
-                  <div className={style.temp}>{temp}°C</div>
-                  <div className={style.wind}>{wind}km/h</div>
-                  <div className={style.line}></div>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <div className={style.main}>
+          <div className={style.frame}>
+            <div className={style.leftFlex}>
+              <div className={style.rowFlex}>
+                <div className={style.date}>{formattedDate}</div>
+                <div className={style.searchBox}>
+                  <button className={style.btnSearch} onClick={handleSearch}>
+                    <FaSearchLocation className="fas fa-search inline" />
+                  </button>
+                  <input
+                    className={style.inputSearch}
+                    type="text"
+                    placeholder="Zadajte mesto"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                  />
                 </div>
-
-                {daylyForecastData && (
-                  <DaylyForecast daylyForecastWeatherData={daylyForecastData} />
-                )}
+                {weatherData && <Weather weatherData={weatherData} />}
+                <div className={style.lineScreen}></div>
+                <div className={style.hourlyScreen}>
+                  <HourlyForecast
+                    hourlyForecastWeatherData={
+                      hourlyForecastWeatherData as HourlyForecastWeatherDataType
+                    }
+                  />
+                </div>
               </div>
-            </div>
+              <div className={style.rightContainer}>
+                <div className={style.rightBox}>
+                  <div className={style.topElement}>
+                    <div className={style.searchBoxScreen}>
+                      <input
+                        className={style.inputScreen}
+                        type="text"
+                        placeholder="Zadajte mesto"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                      />
+                      <button
+                        className={style.btnScreen}
+                        onClick={handleSearch}
+                      >
+                        <FaSearchLocation className="fas fa-search inline" />
+                      </button>
+                    </div>
+                    <div className={style.temp}>{temp}°C</div>
+                    <div className={style.wind}>{wind}km/h</div>
+                    <div className={style.line}></div>
+                  </div>
 
-            {/* <div>
+                  {daylyForecastData && (
+                    <DaylyForecast
+                      daylyForecastWeatherData={daylyForecastData}
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* <div>
           {location.loaded
             ? JSON.stringify(location)
             : "Location data not available yet."}
         </div> */}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
