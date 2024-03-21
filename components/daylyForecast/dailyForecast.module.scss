@@ -89,7 +89,7 @@ $font-family: Josefin Sans, sans-serif;
   margin: 17px 0px;
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 650px) {
   .mainContainerScreen {
     width: 80%;
     min-width: 270px;
@@ -132,7 +132,7 @@ $font-family: Josefin Sans, sans-serif;
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 650px) {
   .screen {
     display: none;
   }

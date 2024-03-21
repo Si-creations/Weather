@@ -24,11 +24,7 @@ body {
   scrollbar-width: none;
 }
 
-body{
-  /* background-image: url("/public/car.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; */
+body {
   min-height: 100vh;
 }
 
@@ -42,3 +38,8 @@ a {
   text-decoration: none;
 }
 
+@media screen and (min-width: 1000px) {
+  body {
+    overflow: hidden;
+  }
+}
