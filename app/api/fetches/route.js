@@ -9,7 +9,7 @@ export const getWeatherData = async (city) => {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=metric&lang=sk`
     );
-    // console.log(response.data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Chyba pri získavaní údajov o počasí", error);

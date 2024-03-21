@@ -42,6 +42,8 @@ import mist from "@/public/mist.jpg";
 import mistN from "@/public/mistN.jpg";
 
 const Home = () => {
+  const [initialLoad, setInitialLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<WeatherDataType | null>(null);
   const [initCity, setInitCity] = useState<string>("");
@@ -50,7 +52,6 @@ const Home = () => {
   const [daylyForecastData, setDaylyForecastData] =
     useState<DaylyForecastWeatherDataType | null>(null);
   const [backgroundImage, setBackgroundImage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const location = useGeolocation();
   const currentDate = new Date();
 
@@ -99,6 +100,12 @@ const Home = () => {
       const hourlyForecastData = await getHourlyForecastData(city);
       setHourlyForecastWeatherData(hourlyForecastData);
     } catch (error) {}
+    try {
+      const daylyForecastData = await getDaylyForecastData(city);
+      setDaylyForecastData(daylyForecastData);
+    } catch (error) {}
+
+    setCity("")
   };
 
   const handleKeyDown = (event: { key: string }) => {
@@ -191,8 +198,17 @@ const Home = () => {
   useEffect(() => {
     if (lat && lng) {
       getInitData();
+    } else {
+      setCity("London");
     }
   }, [lng, lat]);
+
+  useEffect(() => {
+    if (city  && initialLoad) {
+      handleSearch();
+      setInitialLoad(false)
+    }
+  }, [city]);
 
   useEffect(() => {
     if (weatherData && weatherData.name) {
