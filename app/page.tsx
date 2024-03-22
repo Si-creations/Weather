@@ -105,7 +105,7 @@ const Home = () => {
       setDaylyForecastData(daylyForecastData);
     } catch (error) {}
 
-    setCity("")
+    setCity("");
   };
 
   const handleKeyDown = (event: { key: string }) => {
@@ -198,15 +198,16 @@ const Home = () => {
   useEffect(() => {
     if (lat && lng) {
       getInitData();
+      setInitialLoad(false);
     } else {
       setCity("London");
     }
   }, [lng, lat]);
 
   useEffect(() => {
-    if (city  && initialLoad) {
+    if (city && initialLoad) {
       handleSearch();
-      setInitialLoad(false)
+      setInitialLoad(false);
     }
   }, [city]);
 
@@ -236,7 +237,10 @@ const Home = () => {
           <div className={style.frame}>
             <div className={style.leftFlex}>
               <div className={style.rowFlex}>
-                <div className={style.date}>{formattedDate}</div>
+                <div className={style.date}>
+                  <div className={style.cityName}>{weatherData?.name}</div>
+                  {formattedDate}
+                </div>
                 <div className={style.searchBox}>
                   <button className={style.btnSearch} onClick={handleSearch}>
                     <FaSearchLocation className="fas fa-search inline" />

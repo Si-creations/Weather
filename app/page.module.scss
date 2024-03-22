@@ -7,6 +7,7 @@ $font-family: Josefin Sans, sans-serif;
   width: 100%;
   text-align: center;
   font-family: $font-family;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .searchBox {
@@ -18,14 +19,6 @@ $font-family: Josefin Sans, sans-serif;
   overflow: hidden;
 }
 
-.searchBoxScreen {
-  padding-top: 1rem;
-  max-width: fit-content;
-  height: fit-content;
-  position: relative;
-  margin: 0 auto;
-  overflow: hidden;
-}
 
 .inputSearch {
   height: 50px;
@@ -95,8 +88,7 @@ $font-family: Josefin Sans, sans-serif;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    padding: 0 2rem;
-    padding-bottom: 2rem;
+    padding: 0 1rem 2rem 1rem;
     min-height: 400px;
     height: 94vh;
 
@@ -112,7 +104,7 @@ $font-family: Josefin Sans, sans-serif;
   .rightBox {
     width: 100%;
     background-color: #595a5933; //#595a5933;
-    padding: 2rem;
+    padding: 1rem;
     height: 100vh;
     overflow: auto;
   }
@@ -125,7 +117,7 @@ $font-family: Josefin Sans, sans-serif;
     width: 100%;
     height: 1px;
     background-color: rgb(118, 117, 117);
-    margin: 35px 0px;
+    margin-bottom: 35px;
   }
 
   .temp {
@@ -147,24 +139,55 @@ $font-family: Josefin Sans, sans-serif;
     position: absolute;
     top: 3rem;
     font-size: 1.2rem;
+    text-align: right;
+
+    .cityName {
+      font-size: 4rem;
+      @media screen and (max-width: 1100px) {
+        display: none;
+      }
+    }
   }
 
   .inputScreen {
     background: transparent;
-    border-radius: 5px;
-    padding: 6px 6px;
-    margin-right: 0.5rem;
-    border: 1px solid rgb(75, 72, 72);
+    padding: 5px 0px 3px 6px;
+    color: white;
   }
+  .inputScreen::placeholder{
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
   .inputScreen:focus {
     outline: none;
-    border: 1px solid rgb(184, 179, 179);
   }
+
   .btnScreen {
-    padding: 0.5rem;
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all 0.5s ease-in-out;
   }
+
   .searchBoxScreen {
     padding-top: 0;
+    border: 2px solid rgb(149, 143, 143);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+
+  .searchBoxScreen:focus-within {
+    border: 2px solid rgb(207, 202, 202);
   }
 
   .frame {
@@ -172,7 +195,13 @@ $font-family: Josefin Sans, sans-serif;
     border-radius: 20px;
     height: 95vh;
     overflow: hidden;
-    min-width: 900px;
+    // min-width: 900px;
+  }
+
+  .topElement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -198,5 +227,9 @@ $font-family: Josefin Sans, sans-serif;
   }
   .rowFlex {
     padding: 1rem 3rem;
+    width: 100%;
+  }
+  .rightBox {
+    padding: 2rem;
   }
 }

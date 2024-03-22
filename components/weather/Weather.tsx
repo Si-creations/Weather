@@ -130,9 +130,14 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
           <div className={style.line}></div>
           <div className={style.flexbox}>
             <div className="flex items-center">
+         
+              <div className={style.leftFlexbox}>
+                <p>Vychod slnka</p>
+                <h3>{sunrise}</h3>
+              </div>
               <p>
                 <Image
-                  className={style.rightMargin}
+                  className={style.leftMargin}
                   src={Sunrise}
                   alt="Sunrise Icon"
                   width={64}
@@ -140,10 +145,6 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
                   priority={true}
                 />
               </p>
-              <div className={style.leftFlexbox}>
-                <p>Vychod slnka</p>
-                <h3>{sunrise}</h3>
-              </div>
             </div>
             <div className="flex items-center">
               <p>
