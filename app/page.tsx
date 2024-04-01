@@ -16,11 +16,13 @@ import {
 } from "./api/fetches/route";
 //Styles
 import style from "./page.module.scss";
+//Icons
+import { FaWind } from "react-icons/fa6";
+import { FaSearchLocation } from "react-icons/fa";
 //Types
 import { WeatherDataType } from "@/types/weatherDataType";
 import { DaylyForecastWeatherDataType } from "@/types/daylyDataType";
 import { HourlyForecastWeatherDataType } from "@/types/hourlyDataTypes";
-import { FaSearchLocation } from "react-icons/fa";
 //Background images
 import clearSky from "@/public/clear_sky.jpg";
 import clearN from "@/public/clearN.jpg";
@@ -32,8 +34,6 @@ import clouds from "@/public/clouds.jpg";
 import cloudsN from "@/public/cloudsN.jpg";
 import showerRain from "@/public/showerRain.jpg";
 import showerRainN from "@/public/showerRainN.jpg";
-import rain from "@/public/rain.jpg";
-import rainN from "@/public/rainN.jpg";
 import thunder from "@/public/thunder.jpg";
 import thunderN from "@/public/thunderN.jpg";
 import snow from "@/public/snow.jpg";
@@ -160,10 +160,10 @@ const Home = () => {
         setBackgroundImage(cloudsN.src);
         break;
       case "9d":
-        setBackgroundImage(rain.src);
+        setBackgroundImage(showerRain.src);
         break;
       case "9n":
-        setBackgroundImage(rainN.src);
+        setBackgroundImage(showerRainN.src);
         break;
       case "10d":
         setBackgroundImage(showerRain.src);
@@ -280,11 +280,14 @@ const Home = () => {
                         className={style.btnScreen}
                         onClick={handleSearch}
                       >
-                        <FaSearchLocation className="fas fa-search inline" />
+                        <FaSearchLocation className="inline" />
                       </button>
                     </div>
                     <div className={style.temp}>{temp}°C</div>
-                    <div className={style.wind}>{wind}km/h</div>
+                    <div className={style.wind}>
+                      <FaWind className={style.icon} />
+                      <div>{wind}km/h</div>
+                    </div>
                     <div className={style.line}></div>
                   </div>
 

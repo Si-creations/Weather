@@ -20,6 +20,7 @@
 .icon {
   display: inline-block;
   text-transform: uppercase;
+  padding: 1rem;
 }
 
 .temp {
@@ -66,9 +67,16 @@
 .leftMargin {
   margin-left: 5px;
 }
+.phoneDate {
+  font-size: 1rem;
+
+}
 
 @media screen and (max-width: 370px) {
   .rightMargin {
+    display: none;
+  }
+  .leftMargin {
     display: none;
   }
 }
@@ -97,7 +105,11 @@
   .description {
     text-align: right;
     margin: 0;
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+
+  .phoneDate{
+    display: none;
   }
 }
 

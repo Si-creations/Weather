@@ -105,6 +105,7 @@ const hourlyForecast = ({
               <p>
                 {index === 0 ? "Teraz" : adjustTimeWithTimezone(item.dt_txt)}
               </p>{" "}
+              <div className={style.line}></div>
               <p>
                 <Image
                   className={style.image}
@@ -115,7 +116,7 @@ const hourlyForecast = ({
                   priority={true}
                 />
               </p>
-              <p>{Math.round(item.main.temp)}°C</p>
+              <p className={style.temp}>{Math.round(item.main.temp)}°C</p>
             </div>
           )
         )}

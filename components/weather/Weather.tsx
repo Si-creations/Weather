@@ -30,7 +30,6 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
   const icon = weatherData.weather[0].icon;
   const timezoneOffset = weatherData.timezone;
 
-
   const formatTime = (UTC: number) => {
     const utcValue = new Date((UTC + timezoneOffset) * 1000);
     const formatedUtc = utcValue.toLocaleString().split(" ");
@@ -88,6 +87,28 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
     }
   };
 
+  const currentDate = new Date();
+  const months = [
+    "januára",
+    "februára",
+    "marca",
+    "apríla",
+    "mája",
+    "júna",
+    "júla",
+    "augusta",
+    "septembra",
+    "októbra",
+    "novembra",
+    "decembra",
+  ];
+
+  const dayOfMonth = currentDate.getDate();
+  const monthName = months[currentDate.getMonth()];
+  const hours = ("0" + currentDate.getHours()).slice(-2);
+  const minutes = ("0" + currentDate.getMinutes()).slice(-2);
+  const formattedDate = `${dayOfMonth} ${monthName}  | ${hours}:${minutes}`;
+
   return (
     <div className={style.main}>
       <div>
@@ -102,9 +123,11 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
           />
         </div>
         <h1 className={style.temp}>{temp}°C</h1>
-        <h2 className={style.description}>
+        <div className={style.description}>
           {weatherData.weather[0].description}
-        </h2>
+          <div className={style.phoneDate}>{formattedDate}</div>
+        </div>
+
         <div>
           <div className={style.flexbox}>
             <div className={style.leftFlexbox}>
@@ -130,7 +153,6 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
           <div className={style.line}></div>
           <div className={style.flexbox}>
             <div className="flex items-center">
-         
               <div className={style.leftFlexbox}>
                 <p>Vychod slnka</p>
                 <h3>{sunrise}</h3>
