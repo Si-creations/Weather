@@ -132,7 +132,7 @@ const Home = () => {
     } catch (error) {}
 
     const iconCode = weatherData?.weather[0].icon;
-    console.log(iconCode);
+    // console.log(iconCode);
 
     switch (iconCode) {
       case "01d":

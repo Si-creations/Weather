@@ -113,7 +113,6 @@ const DaylyForecast = ({
       >
         <div className={style.closeBtn} onClick={handleToggle}>
           <FaArrowLeft />
-          <button>Naspäť</button>
         </div>
         <p className={style.title}>Denná predpoveď</p>
         {daylyForecastWeatherData &&
