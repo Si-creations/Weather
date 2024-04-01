@@ -1,12 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
-
-$font-family: Josefin Sans, sans-serif;
-
 .main {
   min-height: 100vh;
   width: 100%;
   text-align: center;
-  font-family: $font-family;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -18,7 +13,6 @@ $font-family: Josefin Sans, sans-serif;
   margin: 0 auto;
   overflow: hidden;
 }
-
 
 .inputSearch {
   height: 50px;
@@ -89,7 +83,7 @@ $font-family: Josefin Sans, sans-serif;
     justify-content: flex-end;
     align-items: flex-end;
     padding: 0 1rem 2rem 1rem;
-    min-height: 400px;
+    min-height: 330px;
     height: 94vh;
 
     .hourlyScreen {
@@ -126,6 +120,13 @@ $font-family: Josefin Sans, sans-serif;
 
   .wind {
     font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      padding-right: 0.5rem;
+      font-size: 2rem;
+    }
   }
 
   .line {
@@ -154,7 +155,7 @@ $font-family: Josefin Sans, sans-serif;
     padding: 5px 0px 3px 6px;
     color: white;
   }
-  .inputScreen::placeholder{
+  .inputScreen::placeholder {
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
@@ -195,26 +196,12 @@ $font-family: Josefin Sans, sans-serif;
     border-radius: 20px;
     height: 95vh;
     overflow: hidden;
-    // min-width: 900px;
   }
 
   .topElement {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .main {
-    background: linear-gradient(#e49328 10%, #393984, #010101);
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
-  }
-  .topElement {
-    display: none;
-  }
-  .date {
-    display: none;
   }
 }
 
@@ -231,5 +218,18 @@ $font-family: Josefin Sans, sans-serif;
   }
   .rightBox {
     padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .main {
+    background: linear-gradient(#e49328 10%, #393984, #010101);
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+  .topElement {
+    display: none;
+  }
+  .date {
+    display: none;
   }
 }
