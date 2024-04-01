@@ -228,6 +228,7 @@ const Home = () => {
       className={style.background}
       style={{
         backgroundImage: `url(${backgroundImage})`,
+        transition: "0.5s ease-in-out",
       }}
     >
       {isLoading ? (
