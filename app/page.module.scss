@@ -68,7 +68,6 @@
 @media screen and (min-width: 650px) {
   .main {
     padding: 1.3rem;
-    // max-height: 100vh
   }
 
   .background {
@@ -86,7 +85,6 @@
     padding: 0 1rem 2rem 1rem;
     min-height: 330px;
     height: 94vh;
-    transition: all 5.5s ease-in;
 
     .hourlyScreen {
       align-self: center;
@@ -215,7 +213,7 @@
     font-size: 4.5rem;
   }
   .rowFlex {
-    padding: 1rem 3rem;
+    padding: 2rem 3rem 1rem 3rem;
     width: 100%;
   }
   .rightBox {
