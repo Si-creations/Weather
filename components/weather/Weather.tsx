@@ -1,4 +1,9 @@
 "use client";
+
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { fade } from "@/animations";
+// icon images
 import Image from "next/image";
 import clearSky from "../img/01d@2x.png";
 import fewClouds from "../img/02d@2x.png";
@@ -20,7 +25,9 @@ import snow2 from "../img/13n@2x.png";
 import mist2 from "../img/50n@2x.png";
 import Sunrise from "../img/sunrise.png";
 import Sunset from "../img/sunset.png";
+//types
 import { WeatherDataPropsType } from "@/types/weatherDataType";
+//styles
 import style from "./weather.module.scss";
 
 const Weather = ({ weatherData }: WeatherDataPropsType) => {
@@ -111,8 +118,23 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
 
   return (
     <div className={style.main}>
-      <div>
-        <h1 className={style.cityName}>{weatherData.name}</h1>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ ease: "easeOut", duration: 0.75 }}
+      >
+        <AnimatePresence>
+          <motion.h1
+            variants={fade}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className={style.cityName}
+          >
+            {weatherData.name}
+          </motion.h1>
+        </AnimatePresence>
         <div className={style.icon}>
           <Image
             src={getWeatherIcon(icon)}
@@ -186,7 +208,7 @@ const Weather = ({ weatherData }: WeatherDataPropsType) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

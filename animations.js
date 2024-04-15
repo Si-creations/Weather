@@ -13,3 +13,16 @@ export const rightIncomingx = {
       },
     },
   };
+
+  export const fade = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { ease: "easeOut", duration: 0.75 },
+    },
+    exit: {
+      opacity: 0,
+      transition: { ease: "easeOut", duration: 0.75 },
+    },
+  };
+  

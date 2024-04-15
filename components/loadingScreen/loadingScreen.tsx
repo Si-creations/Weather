@@ -7,7 +7,13 @@ const LoadingScreen = () => {
   return (
     <div className={style.main}>
       <div className={style.loadImg}>
-        <Image src={loadGif} alt="Loading" width={400} height={500} />
+        <Image
+          src={loadGif}
+          alt="Loading"
+          width={400}
+          height={500}
+          priority={true}
+        />
       </div>
     </div>
   );

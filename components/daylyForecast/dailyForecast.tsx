@@ -18,7 +18,7 @@ const DaylyForecast = ({
   const handleToggle = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "auto";
     } else {
       document.body.style.overflow = "auto";
     }
@@ -98,6 +98,7 @@ const DaylyForecast = ({
             )
           )}
       </div>
+      
       <motion.button
         onClick={handleToggle}
         className={style.button}

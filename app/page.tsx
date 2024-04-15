@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import useGeolocation from "./useGeoHook";
+import { motion, AnimatePresence } from "framer-motion";
 //Components
 import Weather from "../components/weather/Weather";
 import HourlyForecast from "../components/hourlyForecast/hourlyForecast";
@@ -255,7 +256,9 @@ const Home = () => {
                     onKeyDown={handleKeyDown}
                   />
                 </div>
+
                 {weatherData && <Weather weatherData={weatherData} />}
+
                 <div className={style.lineScreen}></div>
                 <div className={style.hourlyScreen}>
                   <HourlyForecast
@@ -277,12 +280,14 @@ const Home = () => {
                         onChange={(e) => setCity(e.target.value)}
                         onKeyDown={handleKeyDown}
                       />
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.9 }}
                         className={style.btnScreen}
                         onClick={handleSearch}
                       >
                         <FaSearchLocation className="inline" />
-                      </button>
+                      </motion.button>
                     </div>
                     <div className={style.temp}>{temp}°C</div>
                     <div className={style.wind}>
