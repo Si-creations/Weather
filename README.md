@@ -1,3 +1,5 @@
+5 days forecast is only availeble for 3 days in free version, that's why I copied those 3 days twice.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
